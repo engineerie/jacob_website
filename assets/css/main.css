@@ -6,3 +6,16 @@
     transform: translateX(100%);
   }
   
+  body::-webkit-scrollbar {
+    display: none;
+  }
+
+  html {
+    scrollbar-width: none;
+  }
+
+  body {
+    -ms-overflow-style: none;
+    @apply bg-gray-100 dark:bg-neutral-900;
+  }
+  

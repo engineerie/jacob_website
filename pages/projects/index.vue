@@ -4,6 +4,7 @@
       <h2 class="text-xl">Projects</h2>
       <div class="flex items-end mb-2">
         <!-- USelectMenu for sorting criteria -->
+       
         <USelectMenu
           v-if="!isTableView"
           v-model="sortCriteria"
@@ -12,13 +13,14 @@
           value-attribute="value"
           option-attribute="label"
           class="mr-2" 
+          variant="ghost"
         />
         <!-- UButton for toggling view -->
         <UButton
           :icon="toggleIcon"
           @click="toggleView"
           variant="ghost"
-          color="black"
+          color="gray"
         />
       </div>
     </div>
@@ -35,13 +37,13 @@
       </div>
     </transition>
     <transition name="fade" mode="out-in">
-      <div v-if="!isTableView" key="grid" class="absolute">
-        <transition-group name="list" tag="div" class="grid grid-cols-3 gap-4">
+      <div v-if="!isTableView && isGridViewVisible" key="grid" class="absolute">
+        <transition-group name="list" tag="div" class="grid max-sm:grid-cols-1 grid-cols-3 gap-4">
           <div v-for="project in sortedProjects" :key="project.id" class="relative group overflow-hidden rounded-xl border border-gray-900">
             <nuxt-link :to="`/projects/${project.id}`">
               <NuxtImg
-                width="300"
-                height="180"
+                width="390"
+                height="234"
                 :src="project.thumbnail"
                 :alt="project.title"
                 class="transition-transform duration-300 hover:scale-105"
@@ -59,6 +61,7 @@
 </template>
 
 <style>
+
 .fade-enter-active, .fade-leave-active {
   transition: opacity 0.5s;
 }
@@ -76,8 +79,15 @@
 
   
   <script setup>
-import { ref, computed } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
+
+const isGridViewVisible = ref(false);
+
+onMounted(() => {
+  isGridViewVisible.value = true;
+});
+
 
 const sortingOptions = [
   { value: 'year', label: 'Year' },
@@ -88,9 +98,9 @@ const sortingOptions = [
    // Your projects data
    const projects = [
     { id: 'skogssvamp', title: 'Skogssvamp', year: 2024, medium: 'Web application', thumbnail: 'Skogssvamp.jpg' },
-    { id: 'smart-forest', title: 'Architectures for perception', year: 2022, medium: 'Video', thumbnail: 'AforP_10.jpg' },
-    { id: '_subplots_01ew', title: '_Subplot_01ew', year: 2021, medium: 'Installation', thumbnail: '_Subplot_01_01.jpg' },
-    { id: 'travel-park', title: 'Travel Park', year: 2021, medium: 'Video', thumbnail: 'Travel_park.jpg' },
+    { id: 'architectures-for-perception', title: 'Architectures for perception', year: 2022, medium: 'Video', thumbnail: 'AforP_10.jpg' },
+    { id: '_Subplots_01ew', title: '_Subplot_01ew', year: 2021, medium: 'Installation', thumbnail: '_Subplot_01_01.jpg' },
+    { id: 'travel-park', title: 'Travel park', year: 2021, medium: 'Video', thumbnail: 'Travel_park.jpg' },
     { id: 'conversing-with-the-other-than-human', title: 'Conversing with the other-than-human', year: 2020, medium: 'Publication', thumbnail: 'Conversing_05.jpg' },
     // { id: 6, title: "Can't see the trees for the forest", year: 2021, medium: 'Exhibition', thumbnail: 'url-to-thumbnail-2' },
   ];
@@ -141,7 +151,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 /* Fade transition for both table and grid */
 .fade-enter-active, .fade-leave-active {
   transition: opacity 0.5s, transform 0.5s; /* Include transform transition */

@@ -5,7 +5,7 @@
         icon="i-heroicons-arrow-uturn-left"
         to="/projects"
         variant="ghost"
-        color="black"
+        color="gray"
       />
     </div>
 

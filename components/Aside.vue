@@ -1,36 +1,47 @@
 
 <template>
-    <div class="p-6">
-    <UVerticalNavigation :links="links" />
+    <div class="p-1">
+    <UVerticalNavigation :links="links" :ui="{ 
+    }" @click="closeAside"/>
     </div>
 </template>
 
 <script setup lang="ts">
-const route = useRoute()
+
+const emits = defineEmits(['close']);
+
+const closeAside = () => {
+  emits('close');
+};
 
 const links = [{
   label: 'Jacobb',
   avatar: {
-    src: 'https://avatars.githubusercontent.com/u/739984?v=4'
+   src: '/profile.jpg',
+   ui: {rounded: 'rounded'}
   },
-  badge: 100
+  to: '/'
+
 }, {
   label: 'Projects',
   icon: 'i-heroicons-square-3-stack-3d',
   to: '/projects'
+  
 },  
-{label: 'Writing',
-  icon: 'i-heroicons-pencil',
-  to: '/writing'
-},
+// {label: 'Writing',
+//   icon: 'i-heroicons-pencil',
+//   to: '/writing'
+// },
 {
   label: 'About',
-  icon: 'i-heroicons-user-circle',
+  icon: 'i-heroicons-information-circle',
   to: `/about`
-}, {
-  label: 'Contact',
-  icon: 'i-heroicons-envelope',
-  to: '/contact'
-}]
+}, 
+// {
+//   label: 'Contact',
+//   icon: 'i-heroicons-envelope',
+//   to: '/contact'
+// }
+]
 </script>
 

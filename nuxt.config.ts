@@ -6,4 +6,8 @@ export default defineNuxtConfig({
   image: {
     dir: 'assets/images'
   },
+  colorMode: {
+    preference: 'dark'
+  },
 })
+

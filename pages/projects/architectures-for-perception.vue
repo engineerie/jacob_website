@@ -1,82 +1,74 @@
 <template>
   <div class="pb-10">
     <div class="flex justify-between">
-      <h2 class="text-xl">Conversing with the other-than-human </h2>
+      <h2 class="text-xl">Architectures for perception</h2>
       <div class="flex items-end mb-2">
         <!-- USelectMenu for sorting criteria -->
-       
         <!-- UButton for toggling view -->
         <div>
-        <UButton
-          :icon="toggleIcon"
-          @click="toggleView"
-          variant="ghost"
-          color="gray"
-        />
-        <UButton
-          icon="i-heroicons-arrow-uturn-left"
-          to="/projects"
-          variant="ghost"
-          color="gray"
-        />
-      </div>
+          <UButton
+            :icon="toggleIcon"
+            @click="toggleView"
+            variant="ghost"
+            color="gray"
+          />
+          <UButton
+            icon="i-heroicons-arrow-uturn-left"
+            to="/projects"
+            variant="ghost"
+            color="gray"
+          />
+        </div>
       </div>
     </div>
-    <transition name="fade">
-    <div>
-      <div class="relative transition-all" :style="{ height: computedHeight }">
-        <transition name="fade" >
-          <div v-if="isGridView" key="table" ref="gridRef" class="absolute">
-            <div class="grid grid-cols-3 gap-4">
-              <div v-for="img in items" :key="img" class="rounded-lg overflow-hidden">
-                  <NuxtImg :src="img" width="300" height="180" class="w-full rounded-xl" draggable="false"/>
-              </div>
+    <div class="relative transition-all" :style="{ height: computedHeight }">
+      <transition name="fade">
+        <div v-if="isGridView" key="grid" ref="gridRef" class="absolute">
+          <div class="grid grid-cols-3 gap-4">
+            <div v-for="img in items" :key="img" class="rounded-lg overflow-hidden">
+              <NuxtImg :src="img" width="300" height="180" class="w-full rounded-xl" draggable="false"/>
             </div>
           </div>
-        </transition>
-        <transition name="fade">
-          <div v-if="!isGridView && isCarouselViewVisible" key="grid" class="group"  ref="carouselRef"  >
-            <UCarousel    v-slot="{ item }" :items="items" :ui="{ item: 'basis-full', container: 'rounded-xl'}"     
-        :prev-button="{
-          color: 'gray',
-          icon: 'i-heroicons-arrow-left-20-solid',
-          class: 'invisible group-hover:visible scale-0 group-hover:scale-100 transition-transform'
-        }"
-        :next-button="{
-          color: 'gray',
-          icon: 'i-heroicons-arrow-right-20-solid',
-          class: 'invisible group-hover:visible scale-0 group-hover:scale-100 transition-transform'
-        }"    
-        class="rounded-lg" arrows>
-            <NuxtImg  :src="item" width="1000" height="660" class="w-full rounded-xl" draggable="false" />
-                </UCarousel>
-          </div>
-        </transition>
-  </div>
+        </div>
+      </transition>
+      <transition name="fade">
+        <div v-if="!isGridView && isCarouselViewVisible" key="carousel" class="group" ref="carouselRef">
+          <UCarousel v-slot="{ item }" :items="items" :ui="{ item: 'basis-full', container: 'rounded-xl'}"     
+            :prev-button="{
+              color: 'gray',
+              icon: 'i-heroicons-arrow-left-20-solid',
+              class: 'invisible group-hover:visible scale-0 group-hover:scale-100 transition-transform'
+            }"
+            :next-button="{
+              color: 'gray',
+              icon: 'i-heroicons-arrow-right-20-solid',
+              class: 'invisible group-hover:visible scale-0 group-hover:scale-100 transition-transform'
+            }"    
+            class="rounded-lg" arrows>
+            <NuxtImg :src="item" width="1000" class="w-full rounded-xl" draggable="false"/>
+          </UCarousel>
+        </div>
+      </transition>
+    </div>
     <div class="grid grid-cols-12 mt-3">
-    <div class="col-span-9 border-r border-t rounded-tr-xl rounded border-gray-800 pl-4 py-4 pr-8 text-gray-200">
-      <h1 class="text-xl mb-2">Intro</h1>
-      <p>
-        Structured around an interview with historian Sabine Hörler and pulling together footage from forest research facilities this video explores how the technologisation of forest environments conditions how we relate to them.   </p>
+      <div class="col-span-9 border-r border-t rounded-tr-xl rounded border-gray-800 pl-4 py-4 pr-8 text-gray-200">
+        <h1 class="text-xl mb-2">Intro</h1>
+        <p>
+          Structured around an interview with historian Sabine Hörler and pulling together footage from forest research facilities this video explores how the technologisation of forest environments conditions how we relate to them.
+        </p>
+      </div>
+      <div class="col-span-3 border-l border rounded-xl border-gray-800 py-2 ml-3 text-gray-200 text-sm h-fit">
+        <ul class="divide-y divide-gray-800">
+          <li class="py-2 pl-4">2022</li>
+          <li class="py-2 pl-4">Three Channel Video</li>
+          <li class="py-2 pl-4">Fielding - Goldsmiths University of London</li>
+        </ul>
+      </div>
+    </div>
   </div>
-  <div class="col-span-3 border-l border rounded-xl border-gray-800 py-2 ml-3 text-gray-200 text-sm h-fit">
-    
-    <ul class="divide-y divide-gray-800">
-  <li class="py-2 pl-4">2022</li>
-  <li class="py-2 pl-4">Three Channel Video</li>
-  <li class="py-2 pl-4">Fielding - Goldsmiths University of London</li>
-</ul>
-
-      
-      
-
-  </div>
-</div>
-  </div>
-</transition>
-</div>
 </template>
 
+  
 <script setup>
 import { ref, computed, onMounted, onUnmounted, watch, nextTick } from 'vue';
 
@@ -87,10 +79,18 @@ const gridRef = ref(null);
 const computedHeight = ref('0px');
 
 const items = [
-    'Conversing_05.jpg',
-    'Conversing_03.jpg',
-    'Conversing_01.jpg',
-    'Conversing_02.jpg',
+    'AforP_01.jpg',
+    'AforP_02.jpg',
+    'AforP_03.jpg',
+    'AforP_04.jpg',
+    'AforP_05.jpg',
+    'AforP_07.jpg',
+    'AforP_08.jpg',
+    'AforP_09.jpg',
+    'AforP_10.jpg',
+    'AforP_11.jpg',
+    'AforP_12.jpg',
+    'AforP_13.jpg', 
 ];
 
 // Helper function to check if all images are loaded
@@ -123,7 +123,6 @@ async function calculateHeight() {
   if (currentRef) {
     await allImagesLoaded(currentRef);
     computedHeight.value = `${currentRef.clientHeight}px`;
-    console.log("New Height Calculated: ", computedHeight.value);
   }
 }
 
@@ -150,7 +149,6 @@ onMounted(() => {
   }, 10000);
 
   isCarouselViewVisible.value = true;
-  console.log("Carousel view made visible");
 });
 
 onUnmounted(() => {
@@ -160,7 +158,6 @@ onUnmounted(() => {
 // Toggle view function
 function toggleView() {
   isGridView.value = !isGridView.value;
-  console.log("View toggled to ", isGridView.value ? "Grid" : "Carousel");
   calculateHeight(); // Recalculate height when view is toggled
 }
 
@@ -170,6 +167,7 @@ const toggleIcon = computed(() => {
 });
 
 </script>
+
 
 <style scoped>
 /* Fade transition for both table and grid */
@@ -181,3 +179,6 @@ const toggleIcon = computed(() => {
   transform: scale(0.75); /* Start slightly smaller for entering, slightly larger for leaving */
 }
 </style>
+
+
+  
