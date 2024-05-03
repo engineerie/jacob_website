@@ -3,6 +3,7 @@
     <div class="flex justify-between">
       <h2 class="text-xl">Projects</h2>
       <div class="flex items-end mb-2">
+
         <!-- USelectMenu for sorting criteria -->
        
         <USelectMenu
@@ -26,31 +27,40 @@
     </div>
     <div class="relative">
     <transition name="fade" mode="out-in">
-      <div v-if="isTableView" key="table" class="border border-gray-800 rounded-xl absolute w-full">
-        <UTable 
-          :rows="projects" 
-          :columns="columns" 
-          @select="select"
-        >
-          <!-- Custom row template if needed -->
-        </UTable>
-      </div>
+      <div v-if="isTableView" key="table" class=" absolute w-full pb-12">
+        <div class="border dark:border-gray-800 border-gray-300 overflow-hidden rounded-xl">
+        <UTable :rows="projects" :columns="columns" @select="select"  
+        :ui="{
+    tr: {
+      active: 'hover:bg-opacity-0 sm:hover:bg-opacity-100',
+    }
+  }">
+  <template #avatarDisplay-data="{ row }">
+    
+    <UAvatar :src="`images/avatars/${row.avatar}`" :alt="row.title" format="webp" class=" rounded-md -mr-4" />
+    <!-- Or use a simple img tag if UAvatar is not available -->
+    <!-- <img :src="row.thumbnail" alt="Avatar" class="w-10 h-10 rounded-full object-cover" /> -->
+  </template>
+  <!-- Templates for other columns -->
+</UTable>
+</div>
+  </div>
+
     </transition>
     <transition name="fade" mode="out-in">
-      <div v-if="!isTableView && isGridViewVisible" key="grid" class="absolute">
+      <div v-if="!isTableView && isGridViewVisible" key="grid" class="absolute pb-12">
         <transition-group name="list" tag="div" class="grid max-sm:grid-cols-1 grid-cols-3 gap-4">
-          <div v-for="project in sortedProjects" :key="project.id" class="relative group overflow-hidden rounded-xl border border-gray-900">
+          <div v-for="project in sortedProjects" :key="project.id" class="relative group overflow-hidden focus:overflow-hidden active:overflow-hidden rounded-xl">
             <nuxt-link :to="`/projects/${project.id}`">
-              <NuxtImg
+              <LazyNuxtImg
                 width="390"
                 height="234"
                 :src="project.thumbnail"
                 :alt="project.title"
-                class="transition-transform duration-300 hover:scale-105"
+                class="transition-transform duration-300 sm:hover:scale-105 rounded-xl"
+                format="webp"
               />
-              <div class="absolute bottom-0 left-0 right-0 bg-gray-900 bg-opacity-75 text-white p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none text-xs">
-                {{ project.title }}
-              </div>
+              <LazyThumbnailTitle :title="project.title" />
             </nuxt-link>
           </div>
         </transition-group>
@@ -97,11 +107,15 @@ const sortingOptions = [
 
    // Your projects data
    const projects = [
-    { id: 'skogssvamp', title: 'Skogssvamp', year: 2024, medium: 'Web application', thumbnail: 'Skogssvamp.jpg' },
-    { id: 'architectures-for-perception', title: 'Architectures for perception', year: 2022, medium: 'Video', thumbnail: 'AforP_10.jpg' },
-    { id: '_Subplots_01ew', title: '_Subplot_01ew', year: 2021, medium: 'Installation', thumbnail: '_Subplot_01_01.jpg' },
-    { id: 'travel-park', title: 'Travel park', year: 2021, medium: 'Video', thumbnail: 'Travel_park.jpg' },
-    { id: 'conversing-with-the-other-than-human', title: 'Conversing with the other-than-human', year: 2020, medium: 'Publication', thumbnail: 'Conversing_05.jpg' },
+    { id: 'skogssvamp', title: 'Skogssvamp', year: 2024, medium: 'Web application', thumbnail: 'Skogssvamp.jpg', avatar: 'Skogssvamp_Avatar.jpg'},
+    { id: 'overtired-plots', title: 'Overtired plots', year: 2023, medium: 'Video', thumbnail: 'Overtired_15.png', avatar: 'Overtired_Avatar.jpg' },
+    { id: 'architectures-for-perception', title: 'Architectures for perception', year: 2022, medium: 'Video', thumbnail: 'AforP_10.jpg', avatar: 'AforP_Avatar.jpg' },
+    { id: '_Subplots_01ew', title: '_Subplot_01ew', year: 2021, medium: 'Installation', thumbnail: '_Subplot_01_01.jpg', avatar: '_Subplot_01_Avatar.jpg' },
+    { id: 'travel-park', title: 'Travel park', year: 2021, medium: 'Video', thumbnail: 'Travel_park.jpg', avatar: 'Travel_park_Avatar.jpg' },
+    { id: 'conversing-with-the-other-than-human', title: 'Conversing with the other-than-human', year: 2020, medium: 'Publication', thumbnail: 'Conversing_05.jpg', avatar: 'Conversing_Avatar.jpg' },
+    { id: 'cant-see-the-trees-for-the-forest', title: 'Cant see the trees for the forest', year: 2019, medium: 'Exhibition', thumbnail: 'Ground_floor_01.jpg', avatar: 'Ground_floor_Avatar.jpg' },
+    { id: 'Paper-score', title: 'Paper score', year: 2019, medium: 'Publication', thumbnail: 'Title.png', avatar: 'Paper_score_Avatar.jpg' },
+
     // { id: 6, title: "Can't see the trees for the forest", year: 2021, medium: 'Exhibition', thumbnail: 'url-to-thumbnail-2' },
   ];
 
@@ -132,6 +146,7 @@ const sortedProjects = computed(() => {
   }
   
   const columns = [
+  { key: 'avatarDisplay', label: '', sortable: false },
   { key: 'title', label: 'Title', sortable: true },
   { key: 'year', label: 'Year', sortable: true },
   { key: 'medium', label: 'Medium', sortable: true },

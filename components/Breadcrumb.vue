@@ -6,12 +6,19 @@ const route = useRoute();
 
 const breadcrumbLinks = computed(() => {
   const pathArray = route.path.split('/').filter(p => p);
-  const links = [];
-
+  const links = [{
+    label: 'Jacobb',
+    to: '/',
+  }];
   for (let i = 0; i < pathArray.length; i++) {
     let path = '/' + pathArray.slice(0, i + 1).join('/');
     let label = pathArray[i].replace(/-/g, ' '); // Replace hyphens with spaces
     label = label.charAt(0).toUpperCase() + label.slice(1);
+
+      // Truncate label if it's longer than 10 characters
+      if (label.length > 10) {
+      label = label.substring(0, 15) + '...';
+    }
 
     links.push({
       label: label,

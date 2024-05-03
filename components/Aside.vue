@@ -1,47 +1,70 @@
-
 <template>
-    <div class="p-1">
-    <UVerticalNavigation :links="links" :ui="{ 
-    }" @click="closeAside"/>
-    </div>
+  <div class="lg:p-1 px-2 pt-2">
+    <UVerticalNavigation :links="links" :ui="{ size: 'lg:text-sm text-2xl' }" @click="closeAside" />
+  </div>
 </template>
 
 <script setup lang="ts">
+import { inject, onMounted, ref } from 'vue';
 
-const emits = defineEmits(['close']);
+const toggleAside = inject('toggleAside');
+const isSmallScreen = ref(false);
+
+const updateScreenSize = () => {
+  isSmallScreen.value = window.innerWidth < 1024; // Check if screen width is less than 'lg' breakpoint
+};
+
+onMounted(() => {
+  updateScreenSize();
+  window.addEventListener('resize', updateScreenSize);
+});
 
 const closeAside = () => {
-  emits('close');
+  if (isSmallScreen.value && toggleAside) {
+    toggleAside();
+  }
 };
 
 const links = [{
   label: 'Jacobb',
-  avatar: {
-   src: '/profile.jpg',
-   ui: {rounded: 'rounded'}
-  },
+  icon: 'i-heroicons-home',
+  // avatar: {
+  //  src: '/profile.jpg',
+  //  ui: {rounded: 'rounded'}
+  // },
   to: '/'
 
-}, {
+}, 
+{
   label: 'Projects',
   icon: 'i-heroicons-square-3-stack-3d',
   to: '/projects'
   
-},  
-// {label: 'Writing',
-//   icon: 'i-heroicons-pencil',
-//   to: '/writing'
-// },
+},
+{label: 'Writing',
+  icon: 'i-heroicons-pencil',
+  to: '/writing'
+},
+// {
+//   label: 'Research',
+//   icon: 'i-heroicons-bookmark-square',
+//   to: '/research'
+// },  
 {
   label: 'About',
   icon: 'i-heroicons-information-circle',
   to: `/about`
 }, 
-// {
-//   label: 'Contact',
-//   icon: 'i-heroicons-envelope',
-//   to: '/contact'
-// }
-]
-</script>
+{
+  label: 'Contact',
+  icon: 'i-heroicons-envelope',
+  to: '/contact'
+}
+];
 
+
+// Don't forget to clean up the event listener when the component is destroyed
+onUnmounted(() => {
+  window.removeEventListener('resize', updateScreenSize);
+});
+</script>

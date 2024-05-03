@@ -26,7 +26,7 @@
         <div v-if="isGridView" key="grid" ref="gridRef" class="absolute">
           <div class="grid grid-cols-3 gap-4">
             <div v-for="img in items" :key="img" class="rounded-lg overflow-hidden">
-              <NuxtImg :src="img" width="300" height="180" class="w-full rounded-xl" draggable="false"/>
+              <NuxtImg :src="img" width="300" height="180" format="webp" class="w-full rounded-xl" draggable="false"/>
             </div>
           </div>
         </div>
@@ -45,20 +45,21 @@
               class: 'invisible group-hover:visible scale-0 group-hover:scale-100 transition-transform'
             }"    
             class="rounded-lg" arrows>
-            <NuxtImg :src="item" width="1000" class="w-full rounded-xl" draggable="false"/>
+            <NuxtImg :src="item" width="1000" format="webp" class="w-full" draggable="false"/>
           </UCarousel>
         </div>
       </transition>
     </div>
-    <div class="grid grid-cols-12 mt-3">
-      <div class="col-span-9 border-r border-t rounded-tr-xl rounded border-gray-800 pl-4 py-4 pr-8 text-gray-200">
-        <h1 class="text-xl mb-2">Intro</h1>
+    
+    <div class="grid lg:grid-cols-4 grid-cols-1 mt-3 gap-y-3 lg:gap-3">
+      <div class="col-span-3 border-r border-t rounded-tr-xl rounded dark:border-gray-800 border-gray-300 pl-4 py-4 pr-8 dark:text-gray-200 order-2 lg:order-1">
+         <h1 class="text-xl mb-2">Intro</h1>
         <p>
-          Structured around an interview with historian Sabine Hörler and pulling together footage from forest research facilities this video explores how the technologisation of forest environments conditions how we relate to them.
+          Organised around an interview with historian Sabine Hörler and pulling together footage from forest research facilities this video explores how the technologisation of forest environments conditions how we relate to them.
         </p>
       </div>
-      <div class="col-span-3 border-l border rounded-xl border-gray-800 py-2 ml-3 text-gray-200 text-sm h-fit">
-        <ul class="divide-y divide-gray-800">
+      <div class="col-span-1 border-l border rounded-xl dark:border-gray-800 border-gray-300 py-2 dark:text-gray-200 text-sm h-fit order-1 lg:order-2">
+        <ul class="divide-y dark:divide-gray-800 divide-gray-300 list-none">
           <li class="py-2 pl-4">2022</li>
           <li class="py-2 pl-4">Three Channel Video</li>
           <li class="py-2 pl-4">Fielding - Goldsmiths University of London</li>
