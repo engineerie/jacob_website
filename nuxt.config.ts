@@ -4,6 +4,7 @@ export default defineNuxtConfig({
   modules: ["@nuxt/ui", 'nuxt-icon', '@nuxt/image', '@nuxt/content', '@nuxtjs/tailwindcss'],
   css: ['~/assets/css/tailwind.css', '~/assets/css/main.css'],
   image: {
+  
     dir: 'assets/images'
   },
   colorMode: {
