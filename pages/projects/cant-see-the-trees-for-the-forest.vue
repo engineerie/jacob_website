@@ -1,4 +1,7 @@
 <template>
+  <div class="hidden">
+    <NuxtImg src="images/ground_floor_05.png" width="700" format="webp" class="w-full"/>
+  </div>
     <div class="pb-10">
       <div class="flex justify-between">
         <h2 class="text-xl">Can't see the trees for the forest</h2>
@@ -36,7 +39,7 @@
           </transition>
           <transition name="fade">
             <div v-if="!isGridView && isCarouselViewVisible" key="grid" class="group"  ref="carouselRef"  >
-                <NuxtImg src="ground_floor_05.png" width="700" format="webp" class="w-full"/>
+                <NuxtImg src="images/ground_floor_05.png" width="700" format="webp" class="w-full"/>
               <!-- <UCarousel    v-slot="{ item }" :items="items" :ui="{ item: 'basis-full', container: 'rounded-xl'}"      
           :prev-button="{
             color: 'gray',
@@ -65,7 +68,7 @@
             'Can't see the trees for the forest' is a proposed proverb for when someone is too caught up in an idea of an all encompassing concept to see the myriad of other-worldly perspectives. It here serves as the title for a collection of fact-fictitious elements from of a visitor's failed attempt to reconnect with a singular and unspoiled Nature free from cultural packaging. 
         </p>
         <br>
-    <NuxtImg src="Ground_floor_08.png" width="700" format="webp" class="rounded-xl"/>
+    <NuxtImg src="images/Ground_floor_08.png" width="700" format="webp" class="rounded-xl"/>
     <br>
     <h1 class="text-xl mb-2">Souvenir</h1>
     <p>
@@ -76,40 +79,40 @@ Before I left Europe my father asked me to bring back some good sticks for him t
 The pieces were brought up to code by woodworker Justin Davids at Yew Woodshop in Vancouver BC. The instructions for the job were to make them not appear like mere twigs from the woods while altering them as little as possible. As 'sticks from the woods' was still what my father had asked for. They therefor needed to pass both as natural sticks and treated artefacts.    
 </p>
 <br>
-<NuxtImg src="Ground_floor_09.png" width="700" format="webp" class="rounded-xl mb-2"/>
+<NuxtImg src="images/Ground_floor_09.png" width="700" format="webp" class="rounded-xl mb-2"/>
 <h1 class="text-xl">Anecdote</h1>
 <p>The depiction of a minor narrative incident in a painting
 </p>
 <br>
-<NuxtImg src="Ground_floor_10.png" width="700" format="webp" class="rounded-xl mb-2"/>
+<NuxtImg src="images/Ground_floor_10.png" width="700" format="webp" class="rounded-xl mb-2"/>
 <h1 class="text-xl">Free to take
 </h1>
 <p>Poster of old-growth red-cedar siding</p>
 <br>
-<NuxtImg src="Ground_floor_11.png" width="700" format="webp" class="rounded-xl mb-2"/>
+<NuxtImg src="images/Ground_floor_11.png" width="700" format="webp" class="rounded-xl mb-2"/>
 <h1 class="text-xl">Scent of Rainforest
 </h1>
 <p>Diffuser and rainforest
 diffuser blend</p>
 <br>
-<NuxtImg src="Ground_floor_14.png" width="700" format="webp" class="rounded-xl mb-2"/>
+<NuxtImg src="images/Ground_floor_14.png" width="700" format="webp" class="rounded-xl mb-2"/>
 <h1 class="text-xl">Wind source
 </h1>
 <p>Electric fan</p>
 <br>
-<NuxtImg src="Ground_floor_12.png" width="700" format="webp" class="rounded-xl mb-2"/>
+<NuxtImg src="images/Ground_floor_12.png" width="700" format="webp" class="rounded-xl mb-2"/>
 <h1 class="text-xl">Metallicbirdchirps tweeted
 </h1>
 <p>Phone, recording of birdsong, text, animation</p>
 <br>
 <p>Once every 5 minutes the rather metallic sounding chirp of a Veery Trushy would signal a retweet from Vilém Flusser's essay The Cedar in the park.</p>
 <br>
-<NuxtImg src="Ground_floor_13.png" width="700" format="webp" class="rounded-xl mb-8"/>
+<NuxtImg src="images/Ground_floor_13.png" width="700" format="webp" class="rounded-xl mb-8"/>
 <h1 class="text-xl">Backdrop
 </h1>
 <p>In 2009 the old growth forest T'l'oqwxwat, on the unceeded territory of the Pacheedaht First Nation, outside Port Renfrew on Vancouver Island, was nick named after the hollywood movie Avatar in a campaign to attract tourists and save it from logging. The wallpaper of the phone in the exhibition is a looping video of T'l'oqwxwat which has been processed through an AI to fuse the footage with the style from the CGI loaded blockbuster.</p>
 <br>
-<NuxtImg src="Ground_floor_06.jpg" width="700" format="webp" class="rounded-xl mb-2"/>
+<NuxtImg src="images/Ground_floor_06.jpg" width="700" format="webp" class="rounded-xl mb-2"/>
 <h1 class="text-xl">Postcard
 </h1>
 <p>Tree marking tape, ink.</p>
@@ -141,9 +144,9 @@ diffuser blend</p>
 //   'Ground_floor_05.png',
 //    'Ground_floor_03.png',
 //       'Ground_floor_04.jpg',
-      'Ground_floor_01.jpg',
-      'Ground_floor_02.png',
-      'Ground_floor_06.jpg',
+      'images/Ground_floor_01.jpg',
+      'images/Ground_floor_02.png',
+      'images/Ground_floor_06.jpg',
 
   ];
   

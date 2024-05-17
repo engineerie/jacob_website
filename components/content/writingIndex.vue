@@ -5,7 +5,7 @@
         <div class="flex items-end mb-2">
           <!-- USelectMenu for sorting criteria -->
          
-          <USelectMenu
+          <!-- <USelectMenu
             v-if="!isTableView"
             v-model="sortCriteria"
             :options="sortingOptions"
@@ -14,7 +14,7 @@
             option-attribute="label"
             class="mr-2" 
             variant="ghost"
-          />
+          /> -->
           <!-- UButton for toggling view -->
           <!-- <UButton
             :icon="toggleIcon"
@@ -26,7 +26,7 @@
       </div>
       <div class="relative">
       <transition name="fade" mode="out-in">
-        <div v-if="isTableView && isTableViewVisible" key="table" class=" absolute w-full pb-12">
+        <div key="table" class=" absolute w-full pb-12">
           <div class="border dark:border-gray-800 border-gray-300 overflow-hidden rounded-xl">
           <UTable :rows="projects" :columns="columns" @select="select" :ui="{
     tr: {
@@ -42,7 +42,7 @@
     </div>
   
       </transition>
-      <transition name="fade" mode="out-in">
+      <!-- <transition name="fade" mode="out-in">
         <div v-if="!isTableView" key="grid" class="absolute pb-12">
           <transition-group name="list" tag="div" class="grid max-sm:grid-cols-1 grid-cols-3 gap-4">
             <div v-for="project in sortedProjects" :key="project.id" class="relative group overflow-hidden rounded-xl">
@@ -62,7 +62,7 @@
             </div>
           </transition-group>
         </div>
-      </transition>
+      </transition> -->
     </div>
   </div>
   </template>

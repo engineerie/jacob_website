@@ -48,7 +48,7 @@
           class: 'invisible group-hover:visible scale-0 group-hover:scale-100 transition-transform'
         }"    
         class="rounded-lg" arrows>
-            <NuxtImg  :src="item" width="1000" height="660" format="webp" class="w-full rounded-xl" draggable="false" />
+            <NuxtImg  :src="`images/${item}`" width="1000" height="660" format="webp" class="w-full rounded-xl" draggable="false" />
                 </UCarousel>
           </div>
         </transition>

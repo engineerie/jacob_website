@@ -11,7 +11,7 @@
     </div>
     <transition name="fade-grow" >
       <div v-if="isImageVisible">
-      <NuxtImg  src="travel_park.jpg" width="1000" class="rounded-xl" format="webp"/>
+      <NuxtImg  src="images/travel_park.jpg" width="1000" class="rounded-xl" format="webp"/>
    
       <div class="grid lg:grid-cols-4 grid-cols-1 mt-3 gap-y-3 lg:gap-3">
         <div class="col-span-3 border-r border-t rounded-tr-xl rounded dark:border-gray-800 border-gray-300 pl-4 py-4 pr-8 dark:text-gray-200 order-2 lg:order-1">

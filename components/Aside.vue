@@ -20,9 +20,9 @@ onMounted(() => {
 });
 
 const closeAside = () => {
-  if (isSmallScreen.value && toggleAside) {
-    toggleAside();
-  }
+  // if (isSmallScreen.value && toggleAside) {
+  //   toggleAside();
+  // }
 };
 
 const links = [{

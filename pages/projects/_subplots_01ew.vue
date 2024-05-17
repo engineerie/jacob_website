@@ -26,7 +26,7 @@
         <div v-if="isGridView" key="grid" ref="gridRef" class="absolute">
           <div class="grid grid-cols-3 gap-4">
             <div v-for="img in items" :key="img" class="rounded-lg overflow-hidden">
-              <NuxtImg :src="img" width="300" height="180" format="webp" class="w-full rounded-xl" draggable="false"/>
+              <NuxtImg :src="`images/${item}`" provider="netlify" width="300" height="180" format="webp" class="w-full rounded-xl" draggable="false"/>
             </div>
           </div>
         </div>
@@ -45,7 +45,8 @@
               class: 'invisible group-hover:visible scale-0 group-hover:scale-100 transition-transform'
             }"    
             class="rounded-lg" arrows>
-            <NuxtImg :src="item" height="540" width="900" format="webp" class="w-full" draggable="false"/>
+            <NuxtImg provider="netlify" :src="`images/${item}`"
+ height="540" width="900" format="webp" class="w-full" draggable="false"/>
           </UCarousel>
         </div>
       </transition>

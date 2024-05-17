@@ -1,4 +1,5 @@
 <template>
+  <NuxtLink to="/test" >to test</NuxtLink>
     <div class="w-full">
       <div class="flex justify-between">
         <h2 class="text-xl mb-3">News</h2>
