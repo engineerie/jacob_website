@@ -11,7 +11,7 @@ Together with Anders Dahlberg at the Swedish University of Agricultural Sciences
 <br><br>
 I've participated in exhibtions internationally at venues such as the Museum of Contemporary Art in Lyon, het HEM in Zaandam, the Oxford Real Farming Conference, Ground Floor Art Center in Vancouver, Hause der Statistik in Berlin and Somerset House in London. 
 <br><br>
-I hold a MA in Research Architecture from Goldsmiths University of London and a BFA from Willem de Kooning Academy in Rotterdam. I have also worked for the investigative human rights agency Forensic Architecture.   
+I hold an MA in Research Architecture from Goldsmiths University of London and a BFA from Willem de Kooning Academy in Rotterdam. I have also worked for the investigative human rights agency Forensic Architecture.   
 <h2 class="text-xl mb-2 mt-10 flex items-center"><Icon name="heroicons:link" class="mr-2"/>Links</h2>
 <ul class="list-none">
   <li >  <NuxtLink to="https://www.slu.se/ew-nyheter/2023/3/se-svampen-i-din-skog/" target="blank" class="dark:hover:text-gray-200 hover:text-gray-900 text-gray-400 active:text-gray-600 ">Swedish University of Agricultural Sciences<Icon name="heroicons:arrow-up-right" class="ml-2"/></NuxtLink></li>
