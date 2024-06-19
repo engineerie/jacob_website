@@ -68,11 +68,11 @@
           class="absolute pb-12"
         >
           <div class="grid max-sm:grid-cols-1 grid-cols-3 gap-4">
-            <transition-group name="list" mode="out-in">
+            <transition-group name="list">
               <div
                 v-for="project in sortedProjects"
                 :key="project.id"
-                class="relative group overflow-hidden focus:overflow-hidden active:overflow-hidden rounded-xl"
+                class="relative group overflow-hidden focus:overflow-hidden active:overflow-hidden rounded-xl shadow-md"
               >
                 <nuxt-link :to="`/projects/${project.id}`">
                   <LazyNuxtImg
