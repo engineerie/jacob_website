@@ -49,7 +49,7 @@
             <div
               v-for="img in items"
               :key="img"
-              class="rounded-lg overflow-hidden"
+              class="rounded-lg overflow-hidden shadow-md"
             >
               <NuxtImg
                 :src="`images/${img}`"
@@ -73,21 +73,18 @@
           <UCarousel
             v-slot="{ item }"
             :items="items"
-            :ui="{ item: 'basis-full', container: 'rounded-xl' }"
-            :prev-button="{
-              color: 'gray',
-              icon: 'i-heroicons-arrow-left-20-solid',
-              class:
-                'invisible group-hover:visible scale-0 group-hover:scale-100 transition-transform',
-            }"
-            :next-button="{
-              color: 'gray',
-              icon: 'i-heroicons-arrow-right-20-solid',
-              class:
-                'invisible group-hover:visible scale-0 group-hover:scale-100 transition-transform',
+            :ui="{
+              item: 'basis-full',
+              container: 'rounded-xl',
+              indicators: {
+                active:
+                  'bg-primary-500 dark:bg-primary-400 border border-white',
+                inactive:
+                  'bg-gray-100 dark:bg-gray-800 mix-blend-overlay border border-white',
+              },
             }"
             class="rounded-lg"
-            arrows
+            indicators
           >
             <NuxtImg
               :src="`images/${item}`"
