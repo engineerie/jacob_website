@@ -1,10 +1,6 @@
 <template>
   <div class="lg:p-1 px-2 pt-2">
-    <UVerticalNavigation
-      :links="links"
-      :ui="{ size: 'lg:text-sm text-2xl' }"
-      @click="closeAside"
-    />
+    <UVerticalNavigation :links="links" :ui="{ size: 'lg:text-sm text-2xl' }" @click="closeAside" />
   </div>
 </template>
 
@@ -42,6 +38,11 @@ const links = [
     //  ui: {rounded: 'rounded'}
     // },
     to: "/",
+  },
+  {
+    label: "News",
+    icon: "i-heroicons-newspaper",
+    to: "/news",
   },
   {
     label: "Projects",
