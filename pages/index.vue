@@ -29,25 +29,14 @@
     <div class="relative">
       <transition name="fade" mode="out-in">
         <div v-if="isTableView" key="table" class="absolute w-full pb-12">
-          <div
-            class="border dark:border-gray-800 border-gray-300 overflow-hidden rounded-xl"
-          >
-            <UTable
-              :rows="news"
-              :columns="columns"
-              @select="select"
-              :ui="{
-                tr: {
-                  active: 'hover:bg-opacity-0 sm:hover:bg-opacity-100',
-                },
-              }"
-            >
+          <div class="border dark:border-gray-800 border-gray-300 overflow-hidden rounded-xl">
+            <UTable :rows="news" :columns="columns" @select="select" :ui="{
+          tr: {
+            active: 'hover:bg-opacity-0 sm:hover:bg-opacity-100',
+          },
+        }">
               <template #avatarDisplay-data="{ row }">
-                <UAvatar
-                  :icon="`${row.avatar}`"
-                  :alt="row.title"
-                  class="-mr-4"
-                />
+                <UAvatar :icon="`${row.avatar}`" :alt="row.title" class="-mr-4" />
                 <!-- Or use a simple img tag if UAvatar is not available -->
                 <!-- <img :src="row.thumbnail" alt="Avatar" class="w-10 h-10 rounded-full object-cover" /> -->
               </template>
@@ -58,15 +47,10 @@
       </transition>
       <transition name="fade" mode="out-in">
         <div class="absolute pb-12">
-          <transition-group
-            name="list"
-            tag="div"
-            class="grid grid-cols-1 gap-4 rounded-xl"
-          >
+          <transition-group name="list" tag="div" class="grid grid-cols-1 gap-4 rounded-xl">
             <div v-for="news in sortedNews" :key="news.id">
               <div
-                class="flex w-full relative group overflow-hidden focus:overflow-hidden active:overflow-hidden rounded-xl border bg-gray-200 bg-opacity-50 dark:bg-gray-800 dark:bg-opacity-30 dark:border-gray-800 dark:hover:border-gray-800 dark:hover:bg-opacity-80 p-3"
-              >
+                class="news_content flex w-full relative group overflow-hidden focus:overflow-hidden active:overflow-hidden rounded-xl border bg-gray-200 bg-opacity-50 dark:bg-gray-800 dark:bg-opacity-30 dark:border-gray-800 dark:hover:border-gray-800 dark:hover:bg-opacity-80 p-3">
                 <div>
                   <UAvatar :icon="news.avatar" size="md" class="mr-3" />
                 </div>
@@ -82,37 +66,18 @@
                   <div>
                     <ul class="list-none text-blue-600 dark:text-blue-500 my-3">
                       <li v-for="link in news.links" :key="link.url">
-                        <NuxtLink
-                          :to="link.url"
-                          :target="link.isExternal ? '_blank' : '_self'"
-                          >{{ link.text }}</NuxtLink
-                        >
+                        <NuxtLink :to="link.url" :target="link.isExternal ? '_blank' : '_self'">{{ link.text }}
+                        </NuxtLink>
                       </li>
                     </ul>
                   </div>
                   <div>
                     {{ news.description }}
                   </div>
-
-                  <LazyNuxtImg
-                    v-if="news.thumbnail"
-                    width="950"
-                    height="580"
-                    :src="`/images/${news.thumbnail}`"
-                    :alt="news.title"
-                    class="rounded-lg w-full mt-3"
-                    format="webp"
-                  />
-                  <iframe
-                    v-if="news.iframe"
-                    class="rounded-lg w-full mt-2"
-                    width="100%"
-                    height="166"
-                    scrolling="no"
-                    frameborder="no"
-                    allow="autoplay"
-                    :src="news.iframe"
-                  ></iframe>
+                  <LazyNuxtImg v-if="news.thumbnail" width="950" height="580" :src="`/images/${news.thumbnail}`"
+                    :alt="news.title" class="rounded-lg w-full mt-3" format="webp" />
+                  <iframe v-if="news.iframe" class="rounded-lg w-full mt-2" width="100%" height="166" scrolling="no"
+                    frameborder="no" allow="autoplay" :src="news.iframe"></iframe>
                 </div>
               </div>
             </div>
@@ -128,14 +93,25 @@
 .fade-leave-active {
   transition: opacity 0.5s;
 }
-.fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
+
+.fade-enter,
+.fade-leave-to
+
+/* .fade-leave-active in <2.1.8 */
+  {
   opacity: 0;
 }
+
 .list-enter-active,
 .list-leave-active {
   transition: all 0.5s;
 }
-.list-enter, .list-leave-to /* .list-leave-active in <2.1.8 */ {
+
+.list-enter,
+.list-leave-to
+
+/* .list-leave-active in <2.1.8 */
+  {
   opacity: 0;
   transform: translateY(30px);
 }
@@ -423,6 +399,24 @@ function select(row) {
     router.push(`${row.link}`);
   }
 }
+
+// Intersection Observer setup
+onMounted(() => {
+  const images = document.querySelectorAll('.news_content');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  images.forEach(image => {
+    observer.observe(image);
+  });
+});
 </script>
 
 <script>
@@ -435,14 +429,15 @@ export default {
 /* Fade transition for both table and grid */
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.5s, transform 0.5s; /* Include transform transition */
+  transition: opacity 0.5s, transform 0.5s;
+  /* Include transform transition */
 }
+
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
-  transform: scale(
-    0.75
-  ); /* Start slightly smaller for entering, slightly larger for leaving */
+  transform: scale(0.75);
+  /* Start slightly smaller for entering, slightly larger for leaving */
 }
 
 /* Position and scale transition for the list (grid) */
@@ -450,14 +445,17 @@ export default {
   /* This class is added for moving items within the transition-group */
   transition: transform 0.5s;
 }
+
 .list-enter-active,
 .list-leave-active {
   transition: opacity 0.5s, transform 0.5s;
 }
+
 .list-enter,
 .list-leave-to {
   opacity: 0;
-  transform: scale(0.5); /* Start smaller and fade out */
+  transform: scale(0.5);
+  /* Start smaller and fade out */
 }
 
 /* Ensure that the absolute positioning doesn't overlap in an undesired way */
@@ -468,5 +466,16 @@ export default {
   left: 0;
   right: 0;
   bottom: 0;
+}
+
+.news_content {
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+.in-view {
+  opacity: 1;
+  transform: scale(1);
 }
 </style>

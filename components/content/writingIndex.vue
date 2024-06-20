@@ -1,11 +1,11 @@
 <template>
-    <div class="w-full">
-      <div class="flex justify-between">
-        <h2 class="text-xl mb-2">Writing</h2>
-        <div class="flex items-end mb-2">
-          <!-- USelectMenu for sorting criteria -->
-         
-          <!-- <USelectMenu
+  <div class="w-full">
+    <div class="flex justify-between">
+      <h2 class="text-xl mb-2">Writing</h2>
+      <div class="flex items-end mb-2">
+        <!-- USelectMenu for sorting criteria -->
+
+        <!-- <USelectMenu
             v-if="!isTableView"
             v-model="sortCriteria"
             :options="sortingOptions"
@@ -15,32 +15,32 @@
             class="mr-2" 
             variant="ghost"
           /> -->
-          <!-- UButton for toggling view -->
-          <!-- <UButton
+        <!-- UButton for toggling view -->
+        <!-- <UButton
             :icon="toggleIcon"
             @click="toggleView"
             variant="ghost"
             color="gray"
           /> -->
-        </div>
       </div>
-      <div class="relative">
+    </div>
+    <div class="relative">
       <transition name="fade" mode="out-in">
         <div key="table" class=" absolute w-full pb-12">
-          <div class="border dark:border-gray-800 border-gray-300 overflow-hidden rounded-xl">
-          <UTable :rows="projects" :columns="columns" @select="select" :ui="{
-    tr: {
-      active: 'hover:bg-opacity-0 sm:hover:bg-opacity-100',
-    }
-  }">
-    <!-- <template #avatarDisplay-data="{ row }">
+          <div class="border dark:border-gray-800 border-gray-300 overflow-hidden rounded-xl shadow-md">
+            <UTable :rows="projects" :columns="columns" @select="select" :ui="{
+              tr: {
+                active: 'hover:bg-opacity-0 sm:hover:bg-opacity-100',
+              }
+            }">
+              <!-- <template #avatarDisplay-data="{ row }">
       <UAvatar :src="`images/avatars/${row.avatar}`" :alt="row.title" format="webp" class=" rounded-md -mr-4" />
     </template> -->
-    <!-- Templates for other columns -->
-  </UTable>
-  </div>
-    </div>
-  
+              <!-- Templates for other columns -->
+            </UTable>
+          </div>
+        </div>
+
       </transition>
       <!-- <transition name="fade" mode="out-in">
         <div v-if="!isTableView" key="grid" class="absolute pb-12">
@@ -65,105 +65,114 @@
       </transition> -->
     </div>
   </div>
-  </template>
-    
-    <script setup>
-  import { ref, computed, onMounted } from 'vue';
-  import { useRouter } from 'vue-router';
-  
-  const isTableViewVisible = ref(false);
-  
-  onMounted(() => {
-    isTableViewVisible.value = true;
-  });
-  
-  
-  const sortingOptions = [
-    { value: 'year', label: 'Year' },
-    { value: 'title', label: 'Title' },
-  ];
-  
-     // Your projects data
-     const projects = [
-     { id: 'stadjans-edelweiss', title: "Städjan's edelweiss", year: 2023, thumbnail: '', avatar: '' },
-      { id: 'considering-forestry', title: 'Considering forestry: A science for managing the outside', year: 2022, thumbnail: '', avatar: ''},
-    ];
-  
-    const isTableView = ref(true);
-    const sortCriteria = ref('year');
-  
-    const toggleIcon = computed(() => {
-    return isTableView.value ? 'i-heroicons-squares-2x2' : 'i-heroicons-table-cells' ;
-  });
-  
-  const sortedProjects = computed(() => {
-    return [...projects].sort((a, b) => {
-      let comparison = 0;
-      if (sortCriteria.value === 'year') {
-        comparison = b.year - a.year; // Sort by year in descending order
-      } else if (sortCriteria.value === 'title') {
-        comparison = a.title.localeCompare(b.title); // Sort titles alphabetically
-      } else if (sortCriteria.value === 'medium') {
-        comparison = a.medium.localeCompare(b.medium);
-      }
-      return comparison === 0 ? a.id - b.id : comparison; // Stable sort
-    });
-  });
-  
-  
-    function toggleView() {
-      isTableView.value = !isTableView.value;
+</template>
+
+<script setup>
+import { ref, computed, onMounted } from 'vue';
+import { useRouter } from 'vue-router';
+
+const isTableViewVisible = ref(false);
+
+onMounted(() => {
+  isTableViewVisible.value = true;
+});
+
+
+const sortingOptions = [
+  { value: 'year', label: 'Year' },
+  { value: 'title', label: 'Title' },
+];
+
+// Your projects data
+const projects = [
+  { id: 'stadjans-edelweiss', title: "Städjan's edelweiss", year: 2023, thumbnail: '', avatar: '' },
+  { id: 'considering-forestry', title: 'Considering forestry: A science for managing the outside', year: 2022, thumbnail: '', avatar: '' },
+];
+
+const isTableView = ref(true);
+const sortCriteria = ref('year');
+
+const toggleIcon = computed(() => {
+  return isTableView.value ? 'i-heroicons-squares-2x2' : 'i-heroicons-table-cells';
+});
+
+const sortedProjects = computed(() => {
+  return [...projects].sort((a, b) => {
+    let comparison = 0;
+    if (sortCriteria.value === 'year') {
+      comparison = b.year - a.year; // Sort by year in descending order
+    } else if (sortCriteria.value === 'title') {
+      comparison = a.title.localeCompare(b.title); // Sort titles alphabetically
+    } else if (sortCriteria.value === 'medium') {
+      comparison = a.medium.localeCompare(b.medium);
     }
-    
-    const columns = [
-    { key: 'title', label: 'Title', sortable: true },
-    { key: 'year', label: 'Year', sortable: true },
-    ];
-  
-    const router = useRouter();
-  
-  function select(row) {
-    router.push(`/writing/${row.id}`);
-  }
-    </script>
-  
-  <script>
-  export default {
-    pageTransition: 'slide'
-  }
-  </script>
-  
-  <style scoped>
-  /* Fade transition for both table and grid */
-  .fade-enter-active, .fade-leave-active {
-    transition: opacity 0.5s, transform 0.5s; /* Include transform transition */
-  }
-  .fade-enter-from, .fade-leave-to {
-    opacity: 0;
-    transform: scale(0.75); /* Start slightly smaller for entering, slightly larger for leaving */
-  }
-  
-  /* Position and scale transition for the list (grid) */
-  .list-move { /* This class is added for moving items within the transition-group */
-    transition: transform 0.5s;
-  }
-  .list-enter-active, .list-leave-active {
-    transition: opacity 0.5s, transform 0.5s;
-  }
-  .list-enter, .list-leave-to {
-    opacity: 0;
-    transform: scale(0.5); /* Start smaller and fade out */
-  }
-  
-  /* Ensure that the absolute positioning doesn't overlap in an undesired way */
-  .table-view, .grid-view {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-  }
-  </style>
-  
-  
-    
+    return comparison === 0 ? a.id - b.id : comparison; // Stable sort
+  });
+});
+
+
+function toggleView() {
+  isTableView.value = !isTableView.value;
+}
+
+const columns = [
+  { key: 'title', label: 'Title', sortable: true },
+  { key: 'year', label: 'Year', sortable: true },
+];
+
+const router = useRouter();
+
+function select(row) {
+  router.push(`/writing/${row.id}`);
+}
+</script>
+
+<script>
+export default {
+  pageTransition: 'slide'
+}
+</script>
+
+<style scoped>
+/* Fade transition for both table and grid */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s, transform 0.5s;
+  /* Include transform transition */
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+  transform: scale(0.75);
+  /* Start slightly smaller for entering, slightly larger for leaving */
+}
+
+/* Position and scale transition for the list (grid) */
+.list-move {
+  /* This class is added for moving items within the transition-group */
+  transition: transform 0.5s;
+}
+
+.list-enter-active,
+.list-leave-active {
+  transition: opacity 0.5s, transform 0.5s;
+}
+
+.list-enter,
+.list-leave-to {
+  opacity: 0;
+  transform: scale(0.5);
+  /* Start smaller and fade out */
+}
+
+/* Ensure that the absolute positioning doesn't overlap in an undesired way */
+.table-view,
+.grid-view {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+</style>

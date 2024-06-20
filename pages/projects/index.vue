@@ -1,88 +1,45 @@
 <template>
   <div class="hidden">
     <div v-for="project in projects">
-      <NuxtImg
-        width="390"
-        height="234"
-        :src="`/images/${project.thumbnail}`"
-        :alt="project.title"
-        class="transition-transform duration-300 sm:hover:scale-105 rounded-xl"
-        format="webp"
-      />
+      <NuxtImg width="390" height="234" :src="`/images/${project.thumbnail}`" :alt="project.title"
+        class="transition-transform duration-300 sm:hover:scale-105 rounded-xl" format="webp" />
     </div>
   </div>
   <div class="w-full">
     <div class="flex justify-between">
       <h2 class="text-xl">Projects</h2>
       <div class="flex items-end mb-2">
-        <USelectMenu
-          v-if="!isTableView"
-          v-model="sortCriteria"
-          :options="sortingOptions"
-          placeholder="Sort by"
-          value-attribute="value"
-          option-attribute="label"
-          class="mr-2"
-          variant="ghost"
-        />
-        <UButton
-          :icon="toggleIcon"
-          @click="toggleView"
-          variant="ghost"
-          color="gray"
-        />
+        <USelectMenu v-if="!isTableView" v-model="sortCriteria" :options="sortingOptions" placeholder="Sort by"
+          value-attribute="value" option-attribute="label" class="mr-2" variant="ghost" />
+        <UButton :icon="toggleIcon" @click="toggleView" variant="ghost" color="gray" />
       </div>
     </div>
     <div class="relative">
       <transition name="fade" mode="out-in">
         <div v-if="isTableView" key="table" class="absolute w-full pb-12">
-          <div
-            class="border dark:border-gray-800 border-gray-300 overflow-hidden rounded-xl"
-          >
-            <UTable
-              :rows="projects"
-              :columns="columns"
-              @select="select"
-              :ui="{
-                tr: {
-                  active: 'hover:bg-opacity-0 sm:hover:bg-opacity-100',
-                },
-              }"
-            >
+          <div class="border dark:border-gray-800 border-gray-300 overflow-hidden rounded-xl shadow-md">
+            <UTable :rows="projects" :columns="columns" @select="select" :ui="{
+      tr: {
+        active: 'hover:bg-opacity-0 sm:hover:bg-opacity-100',
+      },
+    }">
               <template #avatarDisplay-data="{ row }">
-                <UAvatar
-                  :src="`images/avatars/${row.avatar}`"
-                  :alt="row.title"
-                  format="webp"
-                  class="rounded-md -mr-4"
-                />
+                <UAvatar :src="`images/avatars/${row.avatar}`" :alt="row.title" format="webp"
+                  class="rounded-md -mr-4" />
               </template>
             </UTable>
           </div>
         </div>
       </transition>
       <transition name="fade" mode="out-in">
-        <div
-          v-if="!isTableView && isGridViewVisible"
-          key="grid"
-          class="absolute pb-12"
-        >
+        <div v-if="!isTableView && isGridViewVisible" key="grid" class="absolute pb-12">
           <div class="grid max-sm:grid-cols-1 grid-cols-3 gap-4">
             <transition-group name="list">
-              <div
-                v-for="project in sortedProjects"
-                :key="project.id"
-                class="relative group overflow-hidden focus:overflow-hidden active:overflow-hidden rounded-xl shadow-md"
-              >
+              <div v-for="project in sortedProjects" :key="project.id"
+                class="relative group overflow-hidden focus:overflow-hidden active:overflow-hidden rounded-xl shadow-md">
                 <nuxt-link :to="`/projects/${project.id}`">
-                  <LazyNuxtImg
-                    width="390"
-                    height="234"
-                    :src="`/images/${project.thumbnail}`"
-                    :alt="project.title"
-                    class="transition-transform duration-300 sm:hover:scale-105 rounded-xl"
-                    format="webp"
-                  />
+                  <LazyNuxtImg width="390" height="234" :src="`/images/${project.thumbnail}`" :alt="project.title"
+                    class="transition-transform duration-300 sm:hover:scale-105 rounded-xl" format="webp" />
                   <LazyThumbnailTitle :title="project.title" />
                 </nuxt-link>
               </div>
@@ -228,27 +185,33 @@ export default {
 <style scoped>
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.5s, transform 0.5s; /* Include transform transition */
+  transition: opacity 0.5s, transform 0.5s;
+  /* Include transform transition */
 }
+
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
-  transform: scale(
-    0.75
-  ); /* Start slightly smaller for entering, slightly larger for leaving */
+  transform: scale(0.75);
+  /* Start slightly smaller for entering, slightly larger for leaving */
 }
+
 .list-move {
   transition: transform 0.5s;
 }
+
 .list-enter-active,
 .list-leave-active {
   transition: opacity 0.5s, transform 0.5s;
 }
+
 .list-enter,
 .list-leave-to {
   opacity: 0;
-  transform: scale(0.5); /* Start smaller and fade out */
+  transform: scale(0.5);
+  /* Start smaller and fade out */
 }
+
 .table-view,
 .grid-view {
   position: absolute;
