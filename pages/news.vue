@@ -50,7 +50,7 @@
                     <transition-group name="list" tag="div" class="grid grid-cols-1 gap-4 rounded-xl">
                         <div v-for="news in sortedNews" :key="news.id">
                             <div
-                                class="news_content flex w-full relative group overflow-hidden focus:overflow-hidden active:overflow-hidden rounded-xl border bg-gray-200 bg-opacity-50 dark:bg-gray-800 dark:bg-opacity-30 dark:border-gray-800 dark:hover:border-gray-800 dark:hover:bg-opacity-80 p-3">
+                                class="news_content flex w-full relative group overflow-hidden focus:overflow-hidden active:overflow-hidden rounded-xl border bg-gray-200 bg-opacity-50 dark:bg-gray-800 dark:bg-opacity-30 dark:border-gray-800 p-3">
                                 <div>
                                     <UAvatar :icon="news.avatar" size="md" class="mr-3" />
                                 </div>

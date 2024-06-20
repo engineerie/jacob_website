@@ -1,42 +1,43 @@
 /* Slide transition */
-.slide-enter-active, .slide-leave-active {
-    transition: transform 0.5s;
-  }
-  .slide-enter, .slide-leave-to {
-    transform: translateX(100%);
-  }
-  
-  body::-webkit-scrollbar {
-    display: none;
-  }
-
-  html {
-    scrollbar-width: none;
-  }
-
-  body {
-    -ms-overflow-style: none;
-    @apply bg-gray-100 dark:bg-neutral-900;
-  }
-
-  .no-scroll {
-    overflow: hidden;
-  }
-  
-  .data-footnote-backref {
-    font-size: 0; /* Hide the default backlink character */
-    display: inline-block; /* Needed to apply width and height */
-    width: 16px; /* Width of your icon */
-    height: 16px; /* Height of your icon */
-    background-image: url('/HeroiconsArrowUturnLeft16Solid.svg'); /* Path to your SVG icon */
-    background-size: contain; /* Ensure the icon fits within the element's dimensions */
-    background-repeat: no-repeat; /* Prevent the icon from repeating */
-    background-position: center; /* Center the icon within the element */
-    vertical-align: middle; /* Align the icon vertically with the surrounding text */
-    margin-top: -3px;
-  }
-  
-  .dark .data-footnote-backref {
-    background-image: url('/HeroiconsArrowUturnLeft16SolidWhite.svg');
+.slide-enter-active,
+.slide-leave-active {
+  transition: transform 0.5s;
 }
- 
+.slide-enter,
+.slide-leave-to {
+  transform: translateX(100%);
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+html {
+  scrollbar-width: none;
+}
+
+body {
+  -ms-overflow-style: none;
+  @apply bg-gray-100 dark:bg-neutral-900;
+}
+
+.no-scroll {
+  overflow: hidden;
+}
+
+.data-footnote-backref {
+  font-size: 0; /* Hide the default backlink character */
+  display: inline-block; /* Needed to apply width and height */
+  width: 16px; /* Width of your icon */
+  height: 16px; /* Height of your icon */
+  background-image: url("/HeroiconsArrowUturnLeft16Solid.svg"); /* Path to your SVG icon */
+  background-size: contain; /* Ensure the icon fits within the element's dimensions */
+  background-repeat: no-repeat; /* Prevent the icon from repeating */
+  background-position: center; /* Center the icon within the element */
+  vertical-align: middle; /* Align the icon vertically with the surrounding text */
+  margin-top: -3px;
+}
+
+.dark .data-footnote-backref {
+  background-image: url("/HeroiconsArrowUturnLeft16SolidWhite.svg");
+}

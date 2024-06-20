@@ -10,7 +10,7 @@
       <h2 class="text-xl">Projects</h2>
       <div class="flex items-end mb-2">
         <USelectMenu v-if="!isTableView" v-model="sortCriteria" :options="sortingOptions" placeholder="Sort by"
-          value-attribute="value" option-attribute="label" class="mr-2" variant="ghost" />
+          value-attribute="value" option-attribute="label" class="mr-2" variant="none" />
         <UButton :icon="toggleIcon" @click="toggleView" variant="ghost" color="gray" />
       </div>
     </div>
@@ -40,6 +40,19 @@
                 <nuxt-link :to="`/projects/${project.id}`">
                   <LazyNuxtImg width="390" height="234" :src="`/images/${project.thumbnail}`" :alt="project.title"
                     class="transition-transform duration-300 sm:hover:scale-105 rounded-xl" format="webp" />
+                  <!-- Year display when filtered by 'year' -->
+                  <span v-if="sortCriteria === 'year'"
+                    class="absolute top-1 right-1 bg-gray-900 bg-opacity-0 text-white px-1.5 py-1 rounded-lg text-xs ">
+                    {{ project.year }}
+                  </span>
+                  <span v-if="sortCriteria === 'medium'"
+                    class="absolute top-1 right-1 bg-gray-900 bg-opacity-0 text-white px-1.5 py-1 rounded-lg text-xs ">
+                    {{ project.medium }}
+                  </span>
+                  <span v-if="sortCriteria === 'title'"
+                    class="absolute top-1 right-1 bg-gray-900 bg-opacity-0 text-white px-1.5 py-1 rounded-lg text-xs ">
+                    {{ project.title }}
+                  </span>
                   <LazyThumbnailTitle :title="project.title" />
                 </nuxt-link>
               </div>
@@ -59,6 +72,7 @@ onMounted(() => {
 });
 
 const sortingOptions = [
+  { value: "unsorted", label: "Unsorted" },
   { value: "year", label: "Year" },
   { value: "title", label: "Title" },
   { value: "medium", label: "Medium" },
@@ -135,7 +149,7 @@ const projects = [
 ];
 
 const isTableView = ref(false);
-const sortCriteria = ref("year");
+const sortCriteria = ref("unsorted");
 
 const toggleIcon = computed(() => {
   return isTableView.value
@@ -143,18 +157,30 @@ const toggleIcon = computed(() => {
     : "i-heroicons-table-cells";
 });
 
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]]; // ES6 destructuring swap
+  }
+  return array;
+}
+
 const sortedProjects = computed(() => {
-  return [...projects].sort((a, b) => {
-    let comparison = 0;
-    if (sortCriteria.value === "year") {
-      comparison = b.year - a.year; // Sort by year in descending order
-    } else if (sortCriteria.value === "title") {
-      comparison = a.title.localeCompare(b.title); // Sort titles alphabetically
-    } else if (sortCriteria.value === "medium") {
-      comparison = a.medium.localeCompare(b.medium);
-    }
-    return comparison === 0 ? a.id - b.id : comparison; // Stable sort
-  });
+  if (sortCriteria.value === 'unsorted') {
+    return shuffleArray([...projects]);
+  } else {
+    return [...projects].sort((a, b) => {
+      let comparison = 0;
+      if (sortCriteria.value === "year") {
+        comparison = b.year - a.year; // Sort by year in descending order
+      } else if (sortCriteria.value === "title") {
+        comparison = a.title.localeCompare(b.title); // Sort titles alphabetically
+      } else if (sortCriteria.value === "medium") {
+        comparison = a.medium.localeCompare(b.medium);
+      }
+      return comparison === 0 ? a.id - b.id : comparison; // Stable sort to preserve order of equal elements
+    });
+  }
 });
 
 function toggleView() {
