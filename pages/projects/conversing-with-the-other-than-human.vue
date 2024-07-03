@@ -1,82 +1,82 @@
 <template>
+  <div class="hidden">
+    <div v-for="img in items" :key="img" class="rounded-lg overflow-hidden">
+      <NuxtImg :src="`images/${img}`" width="300" height="190" format="webp" />
+      <NuxtImg :src="`images/${img}`" width="1000" height="660" format="webp" />
+    </div>
+  </div>
   <div class="pb-10">
     <div class="flex justify-between">
       <h2 class="text-xl">Conversing with the other-than-human </h2>
       <div class="flex items-end mb-2">
         <!-- USelectMenu for sorting criteria -->
-       
+
         <!-- UButton for toggling view -->
         <div>
-        <UButton
-          :icon="toggleIcon"
-          @click="toggleView"
-          variant="ghost"
-          color="gray"
-        />
-        <UButton
-          icon="i-heroicons-arrow-uturn-left"
-          to="/projects"
-          variant="ghost"
-          color="gray"
-        />
-      </div>
+          <UButton :icon="toggleIcon" @click="toggleView" variant="ghost" color="gray" />
+          <UButton icon="i-heroicons-arrow-uturn-left" to="/projects" variant="ghost" color="gray" />
+        </div>
       </div>
     </div>
     <transition name="fade">
-    <div>
-      <div class="relative transition-all" :style="{ height: computedHeight }">
-        <transition name="fade" >
-          <div v-if="isGridView" key="table" ref="gridRef" class="absolute">
-            <div class="grid grid-cols-3 gap-4">
-              <div v-for="img in items" :key="img" class="rounded-lg overflow-hidden">
-                  <NuxtImg :src="img" width="300" height="190" format="webp" class="w-full rounded-xl " draggable="false"/>
+      <div>
+        <div class="relative transition-all" :style="{ height: computedHeight }">
+          <transition name="fade">
+            <div v-if="isGridView" key="table" ref="gridRef" class="absolute">
+              <div class="grid grid-cols-3 gap-4">
+                <div v-for="img in items" :key="img" class="rounded-lg overflow-hidden">
+                  <NuxtImg :src="`images/${img}`" width="300" height="190" format="webp" class="w-full rounded-xl "
+                    draggable="false" />
+                </div>
               </div>
             </div>
+          </transition>
+          <transition name="fade">
+            <div v-if="!isGridView && isCarouselViewVisible" key="grid" class="group" ref="carouselRef">
+              <UCarousel v-slot="{ item }" :items="items" :ui="{ item: 'basis-full', container: 'rounded-xl' }"
+                :prev-button="{
+      color: 'gray',
+      icon: 'i-heroicons-arrow-left-20-solid',
+      class: 'invisible group-hover:visible scale-0 group-hover:scale-100 transition-transform'
+    }" :next-button="{
+      color: 'gray',
+      icon: 'i-heroicons-arrow-right-20-solid',
+      class: 'invisible group-hover:visible scale-0 group-hover:scale-100 transition-transform'
+    }" class="rounded-lg" arrows>
+                <NuxtImg :src="`images/${item}`" width="1000" height="660" format="webp" class="w-full rounded-xl"
+                  draggable="false" />
+              </UCarousel>
+            </div>
+          </transition>
+        </div>
+        <div class="grid lg:grid-cols-4 grid-cols-1 mt-3 gap-y-3 lg:gap-3">
+          <div
+            class="col-span-3 border-r border-t rounded-tr-xl rounded dark:border-gray-800 border-gray-300 pl-4 py-4 pr-8 dark:text-gray-200 order-2 lg:order-1">
+            <h1 class="text-xl mb-2">Intro</h1>
+            <p>
+              With texts by: MT Ursch, Sami Hammana, Arvid&Marie, Claire Tio, Maaike van Papeveld, Niekolaas Johannes
+              Lekkerkerk, Menno Schilthuizen, Marjolijn Kok, Lisa Velema, Quentin Lazzareschi, Rob Stone, Josué Amador,
+              Niina Ratsep
+
+              Co-edited with Maaike van Papeveld </p>
           </div>
-        </transition>
-        <transition name="fade">
-          <div v-if="!isGridView && isCarouselViewVisible" key="grid" class="group"  ref="carouselRef"  >
-            <UCarousel    v-slot="{ item }" :items="items" :ui="{ item: 'basis-full', container: 'rounded-xl'}"     
-        :prev-button="{
-          color: 'gray',
-          icon: 'i-heroicons-arrow-left-20-solid',
-          class: 'invisible group-hover:visible scale-0 group-hover:scale-100 transition-transform'
-        }"
-        :next-button="{
-          color: 'gray',
-          icon: 'i-heroicons-arrow-right-20-solid',
-          class: 'invisible group-hover:visible scale-0 group-hover:scale-100 transition-transform'
-        }"    
-        class="rounded-lg" arrows>
-            <NuxtImg  :src="`images/${item}`" width="1000" height="660" format="webp" class="w-full rounded-xl" draggable="false" />
-                </UCarousel>
+          <div
+            class="col-span-1 border-l border rounded-xl dark:border-gray-800 border-gray-300 py-2 dark:text-gray-200 text-sm h-fit order-1 lg:order-2">
+
+            <ul class="divide-y divide-gray-300 dark:divide-gray-800 list-none ">
+              <li class="py-2 pl-4">2020</li>
+              <li class="py-2 pl-4">Publication 45 pages</li>
+              <li class="py-2 pl-4">Print Room Rotterdam </li>
+            </ul>
+
+
+
+
           </div>
-        </transition>
+        </div>
+      </div>
+    </transition>
   </div>
-  <div class="grid lg:grid-cols-4 grid-cols-1 mt-3 gap-y-3 lg:gap-3">
-    <div class="col-span-3 border-r border-t rounded-tr-xl rounded dark:border-gray-800 border-gray-300 pl-4 py-4 pr-8 dark:text-gray-200 order-2 lg:order-1">
-      <h1 class="text-xl mb-2">Intro</h1>
-      <p>
-        With texts by: MT Ursch, Sami Hammana, Arvid&Marie, Claire Tio, Maaike van Papeveld, Niekolaas Johannes Lekkerkerk, Menno Schilthuizen, Marjolijn Kok, Lisa Velema, Quentin Lazzareschi, Rob Stone, Josué Amador, Niina Ratsep
-
-Co-edited with Maaike van Papeveld      </p>
-  </div>
-  <div class="col-span-1 border-l border rounded-xl dark:border-gray-800 border-gray-300 py-2 dark:text-gray-200 text-sm h-fit order-1 lg:order-2">
-    
-    <ul class="divide-y divide-gray-300 dark:divide-gray-800 list-none ">
-  <li class="py-2 pl-4">2020</li>
-  <li class="py-2 pl-4">Publication  45 pages</li>
-  <li class="py-2 pl-4">Print Room Rotterdam </li>
-</ul>
-
-      
-      
-
-  </div>
-</div>
-  </div>
-</transition>
-</div>
 </template>
 
 <script setup>
@@ -89,10 +89,10 @@ const gridRef = ref(null);
 const computedHeight = ref('0px');
 
 const items = [
-    'Conversing_05.jpg',
-    'Conversing_03.jpg',
-    'Conversing_01.jpg',
-    'Conversing_02.jpg',
+  'Conversing_05.jpg',
+  'Conversing_03.jpg',
+  'Conversing_01.jpg',
+  'Conversing_02.jpg',
 ];
 
 // Helper function to check if all images are loaded
@@ -175,11 +175,16 @@ const toggleIcon = computed(() => {
 
 <style scoped>
 /* Fade transition for both table and grid */
-.fade-enter-active, .fade-leave-active {
-  transition: opacity 0.5s, transform 0.5s; /* Include transform transition */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s, transform 0.5s;
+  /* Include transform transition */
 }
-.fade-enter-from, .fade-leave-to {
+
+.fade-enter-from,
+.fade-leave-to {
   opacity: 0;
-  transform: scale(0.75); /* Start slightly smaller for entering, slightly larger for leaving */
+  transform: scale(0.75);
+  /* Start slightly smaller for entering, slightly larger for leaving */
 }
 </style>

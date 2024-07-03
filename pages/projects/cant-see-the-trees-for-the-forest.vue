@@ -39,7 +39,7 @@
           </transition>
           <transition name="fade">
             <div v-if="!isGridView && isCarouselViewVisible" key="grid" class="group"  ref="carouselRef"  >
-                <NuxtImg src="images/ground_floor_05.png" width="700" format="webp" class="w-full"/>
+                <NuxtImg src="images/ground_floor_05.png" width="700" format="webp" class="w-full rounded-xl"/>
               <!-- <UCarousel    v-slot="{ item }" :items="items" :ui="{ item: 'basis-full', container: 'rounded-xl'}"      
           :prev-button="{
             color: 'gray',
