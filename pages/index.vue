@@ -1,39 +1,78 @@
 <template>
-  <div class="flex justify-center items-center dark:opacity-60">
+  <div class="dark:opacity-60">
     <!-- Apply a glitch effect during the out-in transition -->
     <!-- Added Tailwind classes for responsive height control -->
     <div class="sm:m-24 m-2">
-      <transition name="glitch" mode="out-in" @before-enter="beforeEnter" @after-enter="afterEnter">
-        <video width="100%" height="auto" autoplay muted playsinline @ended="playNextVideo" preload="auto"
-          class="video rounded-xl overflow-hidden " :key="currentVideo">
-          <source :src="currentVideo" type="video/mp4">
+      <transition name="glitch" mode="out-in">
+        <video
+          width="100%"
+          height="auto"
+          autoplay
+          muted
+          playsinline
+          @ended="playNextVideo"
+          preload="auto"
+          class="video rounded-xl overflow-hidden"
+          :key="currentVideo"
+        >
+          <source :src="currentVideo" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
       </transition>
-      <transition name="glitch" mode="out-in" @before-enter="beforeEnter" @after-enter="afterEnter">
-
-        <p class="text-sm mt-2">{{ currentDescription }}</p> <!-- Description text below the video -->
+      <transition
+        name="glitch"
+        mode="out-in"
+        @before-enter="beforeEnter"
+        @after-enter="afterEnter"
+      >
+        <p class="text-sm mt-2">{{ currentDescription }}</p>
+        <!-- Description text below the video -->
       </transition>
-
     </div>
-
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref } from "vue";
 
 // Define the array of videos with descriptions
 const videos = [
-  { src: '/videos/9.mp4', description: 'A serene view of the mountains during sunrise.' },
-  { src: '/videos/2.mp4', description: 'An exciting downtown night scene with vibrant lights.' },
-  { src: '/videos/3.mp4', description: 'A peaceful beach with gentle waves lapping the shore.' },
-  { src: '/videos/4.mp4', description: 'A bustling city street scene captured at noon.' },
-  { src: '/videos/5.mp4', description: 'A quiet lake surrounded by forests in the early morning.' },
-  { src: '/videos/6.mp4', description: 'An artistic interpretation of urban architecture.' },
-  { src: '/videos/7.mp4', description: 'Night sky filled with stars over a calm desert.' },
-  { src: '/videos/8.mp4', description: 'Early morning dew on wildflowers in a meadow.' },
-  { src: '/videos/1.mp4', description: 'A fast-paced montage of various cityscapes.' }
+  {
+    src: "/videos/9.mp4",
+    description: "A serene view of the mountains during sunrise.",
+  },
+  {
+    src: "/videos/2.mp4",
+    description: "An exciting downtown night scene with vibrant lights.",
+  },
+  {
+    src: "/videos/3.mp4",
+    description: "A peaceful beach with gentle waves lapping the shore.",
+  },
+  {
+    src: "/videos/4.mp4",
+    description: "A bustling city street scene captured at noon.",
+  },
+  {
+    src: "/videos/5.mp4",
+    description: "A quiet lake surrounded by forests in the early morning.",
+  },
+  {
+    src: "/videos/6.mp4",
+    description: "An artistic interpretation of urban architecture.",
+  },
+  {
+    src: "/videos/7.mp4",
+    description: "Night sky filled with stars over a calm desert.",
+  },
+  {
+    src: "/videos/8.mp4",
+    description: "Early morning dew on wildflowers in a meadow.",
+  },
+  {
+    src: "/videos/1.mp4",
+    description: "A fast-paced montage of various cityscapes.",
+  },
 ];
 
 // Function to shuffle an array
@@ -58,14 +97,6 @@ function playNextVideo() {
   currentVideo.value = videos[currentVideoIndex.value].src;
   currentDescription.value = videos[currentVideoIndex.value].description; // Update current description based on index
 }
-
-function beforeEnter(el) {
-  // Prepare for animation
-}
-
-function afterEnter(el) {
-  // Cleanup after animation
-}
 </script>
 
 <style scoped>
@@ -79,7 +110,6 @@ function afterEnter(el) {
     transform: translate(-2px, 2px);
     opacity: 0.2;
     background-color: rgb(33, 7, 58);
-
   }
 
   40% {
