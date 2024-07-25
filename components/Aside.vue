@@ -1,5 +1,5 @@
 <template>
-  <div class="lg:p-1 px-2 pt-2">
+  <div class="lg:p-1 px-2 pt-2 mt-10">
     <UVerticalNavigation :links="links" :ui="{ size: 'lg:text-sm text-2xl' }" @click="closeAside" />
   </div>
 </template>

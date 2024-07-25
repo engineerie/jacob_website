@@ -1,72 +1,47 @@
 <template>
   <div v-if="isContentLoaded">
-    <UModal v-model="isOpen" :overlay="true" class="sm:-mt-24">
-      <UCard
-        :ui="{
-          ring: '',
-          divide: 'divide-y divide-gray-100 dark:divide-gray-800',
-          rounded: 'rounded-xl',
-        }"
-      >
+    <UModal v-model="isOpen" :overlay="true">
+      <UCard :ui="{
+    ring: '',
+    divide: 'divide-y divide-gray-100 dark:divide-gray-800',
+    rounded: 'rounded-xl',
+  }">
         <template #header>
           <div class="flex items-center justify-between">
-            <h3
-              class="text-base font-semibold leading-6 text-gray-900 dark:text-white"
-            >
+            <h3 class="text-base font-semibold leading-6 text-gray-900 dark:text-white">
               Upcoming
             </h3>
-            <UButton
-              color="gray"
-              variant="ghost"
-              icon="i-heroicons-x-mark-20-solid"
-              class="-my-1"
-              @click="toggleModal"
-            />
+            <UButton color="gray" variant="ghost" icon="i-heroicons-x-mark-20-solid" class="-my-1"
+              @click="toggleModal" />
           </div>
         </template>
         <ul class="list-none">
           <li>
-            <NuxtLink
-              to="https://research-architecture.org/Book-Series"
-              target="blank"
-              class="text-blue-600 dark:text-blue-500"
-              >Article in CRA III: Common Sensing (2024)
+            <NuxtLink to="https://research-architecture.org/Book-Series" target="blank"
+              class="text-blue-600 dark:text-blue-500">Article in CRA III: Common Sensing (2024)
             </NuxtLink>
           </li>
           <li>
-            <NuxtLink
-              to="https://www.mustarinda.fi/en/magazine"
-              target="blank"
-              class="text-blue-600 dark:text-blue-500"
-              >Article with George Ridgway in Mustarinda Magazine (2024)
+            <NuxtLink to="https://www.mustarinda.fi/en/magazine" target="blank"
+              class="text-blue-600 dark:text-blue-500">Article
+              with George Ridgway in Mustarinda Magazine (2024)
             </NuxtLink>
           </li>
         </ul>
       </UCard>
     </UModal>
-    <div class="dark:opacity-40 sm:m-44">
+    <div class="dark:opacity-80 lg:m-24">
       <div :class="{ gradient: isGradientActive }" @click="toggleGradient">
-        <UCard :ui="{ rounded: 'rounded-xl' }">
-          <transition name="glitch" mode="out-in">
-            <video
-              width="100%"
-              height="auto"
-              autoplay
-              muted
-              playsinline
-              @ended="playNextVideo"
-              preload="auto"
-              class="video rounded-xl overflow-hidden shadow-lg"
-              :key="currentVideo"
-            >
-              <source :src="currentVideo" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-          </transition>
-          <transition name="glitch" mode="out-in">
-            <p class="text-sm mt-2">{{ currentDescription }}</p>
-          </transition>
-        </UCard>
+        <transition name="glitch" mode="out-in">
+          <video width="100%" height="auto" autoplay muted playsinline @ended="playNextVideo" preload="auto"
+            class="video rounded-xl overflow-hidden shadow-lg" :key="currentVideo">
+            <source :src="currentVideo" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </transition>
+        <transition name="glitch" mode="out-in">
+          <p class="text-sm mt-2">{{ currentDescription }}</p>
+        </transition>
       </div>
     </div>
   </div>
@@ -207,6 +182,7 @@ function playNextVideo() {
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(360deg);
   }

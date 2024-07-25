@@ -40,16 +40,14 @@
           <ul class="list-none">
             <li>
               <NuxtLink to="https://www.slu.se/ew-nyheter/2023/3/se-svampen-i-din-skog/" target="blank"
-                class="dark:hover:text-gray-200 hover:text-gray-900 text-gray-400 active:text-gray-600 ">Swedish
+                class=" text-blue-600 dark:text-blue-500">Swedish
                 University of Agricultural Sciences
-                <Icon name="heroicons:arrow-up-right" class="" />
               </NuxtLink>
             </li>
             <li>
               <NuxtLink to="  https://forensic-architecture.org/about/team/member/jacob-bertilsson" target="blank"
-                class="dark:hover:text-gray-200 hover:text-gray-900 text-gray-400 active:text-gray-600 ">Forensic
+                class=" text-blue-600 dark:text-blue-500">Forensic
                 Architecture
-                <Icon name="heroicons:arrow-up-right" class="" />
               </NuxtLink>
             </li>
           </ul>
@@ -59,7 +57,7 @@
           <h2 class="text-xl mb-2 flex items-center">
             <Icon name="heroicons:document-text" class="mr-2" />CV
           </h2>
-          Available <NuxtLink to="/projects" class="underline">here</NuxtLink>
+          Available <NuxtLink to="/projects" class=" text-blue-600 dark:text-blue-500">here</NuxtLink>
 
         </div>
 
