@@ -1,0 +1,1 @@
+import{_ as t,K as r,w as o,e as c,o as a,d as n}from"./DhHc6dn6.js";const s={};function _(u,l){const e=c;return a(),r(e,{to:"https://research-architecture.org/Book-Series",target:"blank",class:"text-blue-600 dark:text-blue-500"},{default:o(()=>[n(" Centre for Research Architeture Book Project ")]),_:1})}const d=t(s,[["render",_]]);export{d as default};

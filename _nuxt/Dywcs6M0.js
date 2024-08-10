@@ -1,0 +1,1 @@
+import{_ as e,K as a,w as n,e as s,o,d as c}from"./DhHc6dn6.js";const _={};function r(i,l){const t=s;return o(),a(t,{to:"https://mustarinda.fi/en/magazine",target:"blank",class:"text-blue-600 dark:text-blue-500"},{default:n(()=>[c(" Mustarinda Magazine ")]),_:1})}const d=e(_,[["render",r]]);export{d as default};
