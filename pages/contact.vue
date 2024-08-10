@@ -10,19 +10,19 @@
             <div class="form-row">
               <div class="col mb-2 w-52">
                 <UInput variant="outline" type="name" name="name" class="form-control" placeholder="Name" required
-                  :ui="{ rounded: 'rounded-lg', }" />
+                  :ui="{ rounded: 'rounded-sm', }" />
               </div>
               <div class="col mb-2 w-52">
                 <UInput variant="outline" type="email" name="email" class="form-control" placeholder="Email" required
-                  :ui="{ rounded: 'rounded-lg', }" />
+                  :ui="{ rounded: 'rounded-sm', }" />
               </div>
             </div>
           </div>
           <div class="form-group mb-2">
-            <UTextarea variant="outline" placeholder="Message" name="message" required :ui="{ rounded: 'rounded-lg', }">
+            <UTextarea variant="outline" placeholder="Message" name="message" required :ui="{ rounded: 'rounded-sm', }">
             </UTextarea>
           </div>
-          <UButton type="submit" color="white" variant="solid" class="rounded-lg">Send message</UButton>
+          <UButton type="submit" color="white" variant="solid" class="rounded-sm">Send message</UButton>
         </form>
       </div>
     </transition>

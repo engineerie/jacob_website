@@ -5,7 +5,7 @@
     </header>
 
     <UButton color="gray" variant="ghost" class="hidden lg:flex z-50 px-1.5 fixed top-2 left-2" @click="toggleAside">
-      <UIcon name="i-mynaui-sidebar" class="w-5 h-5" dynamic />
+      <UIcon name="ph:sidebar-simple" class="w-5 h-5" dynamic />
     </UButton>
     <!-- Toggle Button for Small Screens -->
     <UButton color="white" size="xl" :icon="toggleIcon"
@@ -15,7 +15,7 @@
     <!-- Aside Section -->
     <transition name="slide">
       <aside v-if="isAsideOpen"
-        class="z-30 fixed h-screen w-48  dark:bg-gray-900 lg:dark:bg-opacity-10 bg-white  lg:bg-sky-900 lg:dark:bg-sky-300 lg:bg-opacity-15 border-r dark:border-gray-800 border-gray-300"
+        class="z-30 fixed h-screen w-48  dark:bg-gray-900 lg:dark:bg-opacity-10 bg-white  lg:bg-teal-950 lg:dark:bg-sky-300 lg:bg-opacity-5 border-r dark:border-gray-800 border-gray-300"
         @mouseenter="keepOpen" @mouseleave="close"
         :class="{ block: isAsideOpen, hidden: !isAsideOpen, 'w-full': isAsideOpen && !isLargeScreen, }">
         <Aside />

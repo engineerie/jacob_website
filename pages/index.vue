@@ -1,11 +1,13 @@
 <template>
-  <div v-if="isContentLoaded">
-    <UModal v-model="isOpen" :overlay="true">
+  <transition name="fade-grow">
+    <div v-if="isContentLoaded">
+      <!-- <UModal v-model="isOpen" :overlay="true">
       <UCard :ui="{
     ring: '',
     divide: 'divide-y divide-gray-100 dark:divide-gray-800',
     rounded: 'rounded-xl',
-  }">
+  }"
+  >
         <template #header>
           <div class="flex items-center justify-between">
             <h3 class="text-base font-semibold leading-6 text-gray-900 dark:text-white">
@@ -15,36 +17,41 @@
               @click="toggleModal" />
           </div>
         </template>
-        <ul class="list-none">
-          <li>
-            <NuxtLink to="https://research-architecture.org/Book-Series" target="blank"
-              class="text-blue-600 dark:text-blue-500">Article in CRA III: Common Sensing (2024)
-            </NuxtLink>
-          </li>
-          <li>
-            <NuxtLink to="https://www.mustarinda.fi/en/magazine" target="blank"
-              class="text-blue-600 dark:text-blue-500">Article
-              with George Ridgway in Mustarinda Magazine (2024)
-            </NuxtLink>
-          </li>
-        </ul>
-      </UCard>
-    </UModal>
-    <div class="dark:opacity-80 lg:m-24">
-      <div :class="{ gradient: isGradientActive }" @click="toggleGradient">
+<ul class="list-none">
+  <li>
+    <NuxtLink to="https://research-architecture.org/Book-Series" target="blank"
+      class="text-blue-600 dark:text-blue-500">Article in CRA III: Common Sensing (2024)
+    </NuxtLink>
+  </li>
+  <li>
+    <NuxtLink to="https://www.mustarinda.fi/en/magazine" target="blank" class="text-blue-600 dark:text-blue-500">Article
+      with George Ridgway in Mustarinda Magazine (2024)
+    </NuxtLink>
+  </li>
+</ul>
+</UCard>
+</UModal> -->
+      <div class="dark:opacity-80 lg:m-28
+    ">
+        <!-- <div :class="{ gradient: isGradientActive }" @click="toggleGradient"> -->
         <transition name="glitch" mode="out-in">
           <video width="100%" height="auto" autoplay muted playsinline @ended="playNextVideo" preload="auto"
-            class="video rounded-xl overflow-hidden shadow-lg" :key="currentVideo">
-            <source :src="currentVideo" type="video/mp4" />
+            class="video rounded-sm overflow-hidden shadow-lg" :key="currentVideo">
+            <!-- <source :src="currentVideo" type="video/mp4" /> -->
+            <source src="/videos/subsim_web.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         </transition>
         <transition name="glitch" mode="out-in">
-          <p class="text-sm mt-2">{{ currentDescription }}</p>
+          <p class="text-sm mt-2 ">SUBSIM
+            <UBadge size="xs" label="Work in progress" color="orange" variant="subtle" />
+          </p>
+          <!-- <p class="text-sm mt-2">{{ currentDescription }}</p> -->
         </transition>
       </div>
+      <!-- </div> -->
     </div>
-  </div>
+  </transition>
 </template>
 
 <script setup>
@@ -126,7 +133,20 @@ function playNextVideo() {
 }
 </script>
 
+
 <style scoped>
+.fade-grow-enter-active,
+.fade-grow-leave-active {
+  transition: opacity 0.6s, transform 0.6s;
+}
+
+.fade-grow-enter-from,
+.fade-grow-leave-to {
+  opacity: 0;
+  transform: scale(0.9);
+
+}
+
 @keyframes glitch {
   0% {
     transform: translate(0);

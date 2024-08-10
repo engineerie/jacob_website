@@ -6,17 +6,17 @@
     <transition name="fade-grow">
       <div v-if="isVisible">
         <div
-          class="dark:text-gray-200 mb-4 border dark:border-gray-800 border-gray-300 overflow-hidden rounded-xl shadow-md p-6 dark:bg-neutral-800 dark:bg-opacity-30">
-          <p>I'm an artist, researcher and web developer based between Sweden and the UK. I use video, 3D modelling
-            and data visualisation to explore the role of technology and aesthetics within systems of ecosystem
+          class="dark:text-gray-200 mb-4 border dark:border-gray-800 border-gray-300 overflow-hidden rounded-sm shadow-md p-6 dark:bg-neutral-800 dark:bg-opacity-30">
+          <p>I'm an artist and researcher based between the UK and Sweden. I use video, web code and 3D visualisations
+            to explore the role of technology and aesthetics within systems of ecosystem
             governance,
             primarily focusing on digital representations of forest environments.
             <br><br>
-            Together with Anders Dahlberg at the Swedish University of Agricultural Sciences I currently run Skogssvamp,
-            a
-            project that visually maps mycorrhizal fungi in Swedish forests and communicates how forest management
-            affects
-            the species composition in the soil.
+            I currently run the project “see the mushrooms in your forest”
+            together with Anders Dahlberg, professor in mycology at the university of agricultural sciences in Uppsala
+            Sweden. Through a web application, the project will
+            communicate new data on what mushrooms exist in different forest environments and how different forestry
+            practices effect the fungi composition in the soil.
             <br><br>
           </p>
           <hr />
@@ -29,11 +29,12 @@
             in Berlin and Somerset House in London.
             <br><br>
             I hold an MA in Research Architecture from Goldsmiths University of London and a BFA from Willem de Kooning
-            Academy in Rotterdam. I have also worked for the investigative human rights agency Forensic Architecture.
+            Academy in Rotterdam.
+            <!-- I have also worked for the investigative human rights agency Forensic Architecture. -->
           </p>
         </div>
         <div
-          class="dark:text-gray-200 mb-4 border dark:border-gray-800 border-gray-300 overflow-hidden rounded-xl shadow-md p-6 dark:bg-neutral-800 dark:bg-opacity-30">
+          class="dark:text-gray-200 mb-4 border dark:border-gray-800 border-gray-300 overflow-hidden rounded-sm shadow-md p-6 dark:bg-neutral-800 dark:bg-opacity-30">
           <h2 class="text-xl mb-2 flex items-center">
             <Icon name="heroicons:link" class="mr-2" />Links
           </h2>
@@ -53,7 +54,7 @@
           </ul>
         </div>
         <div
-          class="dark:text-gray-200 border dark:border-gray-800 border-gray-300 overflow-hidden rounded-xl shadow-md p-6 dark:bg-neutral-800 dark:bg-opacity-30">
+          class="dark:text-gray-200 border dark:border-gray-800 border-gray-300 overflow-hidden rounded-sm shadow-md p-6 dark:bg-neutral-800 dark:bg-opacity-30">
           <h2 class="text-xl mb-2 flex items-center">
             <Icon name="heroicons:document-text" class="mr-2" />CV
           </h2>

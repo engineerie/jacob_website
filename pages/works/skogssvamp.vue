@@ -1,0 +1,84 @@
+<template>
+  <div class="hidden">
+    <NuxtImg src="images/Skogssvamp.jpg" width="1200" format="webp" class="rounded-sm" />
+  </div>
+  <div class="pb-10">
+    <div class="flex justify-between mb-2">
+      <h2 class="text-xl">Skogssvamp</h2>
+      <UButton icon="i-heroicons-arrow-uturn-left" to="/works" variant="ghost" color="gray" />
+    </div>
+    <transition name="fade-grow">
+      <div v-if="isImageVisible">
+        <NuxtImg src="images/Skogssvamp.jpg" width="1200" format="webp" class="rounded-sm" />
+
+        <div class="grid lg:grid-cols-4 grid-cols-1 mt-3 gap-y-3 lg:gap-3">
+          <div
+            class="col-span-3 border-r border-t rounded-tr-sm rounded dark:border-gray-800 border-gray-300 pl-4 py-4 pr-8 dark:text-gray-200 order-2 lg:order-1">
+            <h1 class="text-xl mb-2">Intro</h1>
+            <p>
+              Skogssvamp (forest mushroom) is a project to develop a web application to communicate what the presence
+              and distribution of mushrooms in different forest stands might look like. The application is intended to
+              visualise the predominantly hidden diversity of mycorrhizal fungi in Swedish forests. Users will also be
+              able to test and see the potential effect different types of forest management have on the species
+              composition of soil fungi.
+              <br><br>
+              Skogssvamp is a collaboration between Jacob Bertilsson and Anders Dahlberg. The project has been awarded a
+              two year project grant from Skogssällskapet and is based at the Swedish University of Agricultural
+              Sciences.
+              <br><br>
+              Project presentations have been given at the Oxford Real Farming Conference (2023) and at the Mustarinda
+              Association (2023).
+            </p>
+          </div>
+          <div
+            class="col-span-1 border-l border rounded-sm dark:border-gray-800 border-gray-300 py-2 dark:text-gray-200 text-sm h-fit order-1 lg:order-2">
+
+            <ul class="divide-y dark:divide-gray-800 divide-gray-300 list-none">
+              <li class="py-2 pl-4">
+                <UBadge size="xs" label="Work in progress" color="orange" variant="subtle" />
+              </li>
+              <li class="py-2 pl-4">2023</li>
+              <li class="py-2 pl-4">Web application</li>
+              <li class="py-2 pl-4">With Anders Dahlberg</li>
+
+              <li class="py-2 pl-4"> <nuxt-link
+                  to="https://www.slu.se/ew-nyheter/2023/3/se-svampen-i-din-skog/#:~:text=En%20ny%20webbapplikation%20ska%20tas,hur%20olika%20skogsbruks%C3%A5tg%C3%A4rder%20p%C3%A5verkar%20svamparna."
+                  target="blank" class="text-blue-600 dark:text-blue-500">Swedish University of Agricultural
+                  Sciences</nuxt-link></li>
+              <li class="py-2 pl-4"> <nuxt-link
+                  to="https://www.skogssallskapet.se/forskning/alla-projekt/projekt/2023-08-01-se-svampen-i-din-skog.html"
+                  target="blank" class="text-blue-600 dark:text-blue-500">Skogssällskapet</nuxt-link></li>
+
+            </ul>
+          </div>
+        </div>
+      </div>
+    </transition>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      isImageVisible: false,
+    };
+  },
+  mounted() {
+    this.isImageVisible = true;
+  },
+}
+</script>
+
+<style scoped>
+.fade-grow-enter-active,
+.fade-grow-leave-active {
+  transition: opacity 0.6s, transform 0.6s;
+}
+
+.fade-grow-enter-from,
+.fade-grow-leave-to {
+  opacity: 0;
+  transform: scale(0.9);
+}
+</style>

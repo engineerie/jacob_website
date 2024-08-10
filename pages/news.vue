@@ -29,7 +29,7 @@
         <div class="relative">
             <transition name="fade" mode="out-in">
                 <div v-if="isTableView" key="table" class="absolute w-full pb-12">
-                    <div class="border dark:border-gray-800 border-gray-300 overflow-hidden rounded-xl">
+                    <div class="border dark:border-gray-800 border-gray-300 overflow-hidden rounded-sm">
                         <UTable :rows="news" :columns="columns" @select="select" :ui="{
                     tr: {
                         active: 'hover:bg-opacity-0 sm:hover:bg-opacity-100',
@@ -47,10 +47,10 @@
             </transition>
             <transition name="fade" mode="out-in">
                 <div class="absolute pb-12">
-                    <transition-group name="list" tag="div" class="grid grid-cols-1 gap-4 rounded-xl">
+                    <transition-group name="list" tag="div" class="grid grid-cols-1 gap-4 rounded-sm">
                         <div v-for="news in sortedNews" :key="news.id">
                             <div
-                                class="news_content flex w-full relative group overflow-hidden focus:overflow-hidden active:overflow-hidden rounded-xl border bg-gray-200 bg-opacity-50 dark:bg-gray-800 dark:bg-opacity-30 dark:border-gray-800 p-3">
+                                class="news_content flex w-full relative group overflow-hidden focus:overflow-hidden active:overflow-hidden rounded-sm border bg-gray-200 bg-opacity-50 dark:bg-gray-800 dark:bg-opacity-30 dark:border-gray-800 p-3">
                                 <div>
                                     <UAvatar :icon="news.avatar" size="md" class="mr-3" />
                                 </div>
@@ -78,8 +78,8 @@
                                     </div>
                                     <LazyNuxtImg v-if="news.thumbnail" width="950" height="580"
                                         :src="`/images/${news.thumbnail}`" :alt="news.title"
-                                        class="rounded-lg w-full mt-3" format="webp" />
-                                    <iframe v-if="news.iframe" class="rounded-lg w-full mt-2" width="100%" height="166"
+                                        class="rounded-sm w-full mt-3" format="webp" />
+                                    <iframe v-if="news.iframe" class="rounded-sm w-full mt-2" width="100%" height="166"
                                         scrolling="no" frameborder="no" allow="autoplay" :src="news.iframe"></iframe>
                                 </div>
                             </div>

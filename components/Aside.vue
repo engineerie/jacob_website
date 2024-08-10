@@ -1,6 +1,7 @@
 <template>
   <div class="lg:p-1 px-2 pt-2 mt-10">
-    <UVerticalNavigation :links="links" :ui="{ size: 'lg:text-sm text-2xl' }" @click="closeAside" />
+    <UVerticalNavigation :links="links" :ui="{ size: 'lg:text-sm text-2xl', base: 'before:rounded-sm' }"
+      @click="closeAside" />
   </div>
 </template>
 
@@ -40,16 +41,16 @@ const links = [
     to: "/",
   },
   {
+    label: "Works",
+    icon: "i-heroicons-square-3-stack-3d",
+    to: "/works",
+  },
+  { label: "Writings", icon: "i-heroicons-pencil", to: "/writings" },
+  {
     label: "News",
     icon: "i-heroicons-newspaper",
     to: "/news",
   },
-  {
-    label: "Projects",
-    icon: "i-heroicons-square-3-stack-3d",
-    to: "/projects",
-  },
-  { label: "Writing", icon: "i-heroicons-pencil", to: "/writing" },
   // {
   //   label: 'Research',
   //   icon: 'i-heroicons-bookmark-square',
