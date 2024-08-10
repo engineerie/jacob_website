@@ -1,85 +1,84 @@
 [
-    {
-      "id": "mustarinda-open-day",
-      "title": "Screening at Mustarinda Open Day",
-      "date": "16/03/2023",
-      "thumbnail": "Overtired_15.png",
-      "description": "Mustarinda Association",
-      "links": [
-        {
-          "url": "/projects/overtired-plots",
-          "text": "More about Overtired Plots",
-          "isExternal": false
-        }
-      ],
-      "avatar": "i-heroicons-square-3-stack-3d"
-    },
-    {
-      "id": "Reveil",
-      "title": "Reveil: Dawn Chorus",
-      "date": "06/05/2023",
-      "thumbnail": "reveil.png",
-      "description": "",
-      "links": [
-        {
-          "url": "https://streams.soundtent.org/2023/streams/utc3_-532c7966-e7c7-4f99-bb90-ced3a09b5ba2",
-          "text": "Soundtent Mustarinda stream",
-          "isExternal": true
-        },
-        {
-          "url": "http://soundtent.org/reveil/#/",
-          "text": "Soundtent Reveil",
-          "isExternal": true
-        }
-      ],
-      "avatar": "i-heroicons-link-solid"
-    },
-    {
-      "id": "se-svampen-i-din-skog",
-      "title": "Se svampen i din skog",
-      "date": "16/03/2023",
-      "thumbnail": "SeSvampen_SLU.png",
-      "description": "Skogssvamp has been awarded a two year project grant from skogssällskapet.",
-      "links": [
-        {
-          "url": "https://www.slu.se/ew-nyheter/2023/3/se-svampen-i-din-skog/",
-          "text": "SLU News Article",
-          "isExternal": true
-        }
-      ],
-      "avatar": "i-heroicons-link-solid"
-    },
-    {
-      "id": "ORFC",
-      "title": "Oxford Real Farming Conference",
-      "date": "05/01/2023",
-      "thumbnail": "",
-      "description": "The Skogssvamp project was presented at the Oxford Real Farming Conference as part of the Investigative Ecologies event.",
-      "links": [
-        {
-          "url": "https://orfc.org.uk/session/investigative-ecology-critical-views-on-the-politics-of-contemporary-agriculture/",
-          "text": "ORFC Session",
-          "isExternal": true
-        }
-      ],
-      "avatar": "i-heroicons-link-solid",
-      "iframe": "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1433703880&color=%23333230&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"
-    },
-    {
-      "id": "skogssvamp",
-      "title": "Skogssvamp",
-      "year": 2024,
-      "medium": "Web application",
-      "thumbnail": "Skogssvamp.jpg",
-      "description": "This is the description",
-      "links": [
-        {
-          "url": "/writing",
-          "text": "Read more about Skogssvamp",
-          "isExternal": false
-        }
-      ],
-      "avatar": "Skogssvamp_Avatar.jpg"
-    }
-  ]
-  
+  {
+    "id": "mustarinda-open-day",
+    "title": "Screening at Mustarinda Open Day",
+    "date": "16/03/2023",
+    "thumbnail": "Overtired_15.png",
+    "description": "Mustarinda Association",
+    "links": [
+      {
+        "url": "/works/overtired-plots",
+        "text": "More about Overtired Plots",
+        "isExternal": false
+      }
+    ],
+    "avatar": "i-heroicons-square-3-stack-3d"
+  },
+  {
+    "id": "Reveil",
+    "title": "Reveil: Dawn Chorus",
+    "date": "06/05/2023",
+    "thumbnail": "reveil.png",
+    "description": "",
+    "links": [
+      {
+        "url": "https://streams.soundtent.org/2023/streams/utc3_-532c7966-e7c7-4f99-bb90-ced3a09b5ba2",
+        "text": "Soundtent Mustarinda stream",
+        "isExternal": true
+      },
+      {
+        "url": "http://soundtent.org/reveil/#/",
+        "text": "Soundtent Reveil",
+        "isExternal": true
+      }
+    ],
+    "avatar": "i-heroicons-link-solid"
+  },
+  {
+    "id": "se-svampen-i-din-skog",
+    "title": "Se svampen i din skog",
+    "date": "16/03/2023",
+    "thumbnail": "SeSvampen_SLU.png",
+    "description": "Skogssvamp has been awarded a two year project grant from skogssällskapet.",
+    "links": [
+      {
+        "url": "https://www.slu.se/ew-nyheter/2023/3/se-svampen-i-din-skog/",
+        "text": "SLU News Article",
+        "isExternal": true
+      }
+    ],
+    "avatar": "i-heroicons-link-solid"
+  },
+  {
+    "id": "ORFC",
+    "title": "Oxford Real Farming Conference",
+    "date": "05/01/2023",
+    "thumbnail": "",
+    "description": "The Skogssvamp project was presented at the Oxford Real Farming Conference as part of the Investigative Ecologies event.",
+    "links": [
+      {
+        "url": "https://orfc.org.uk/session/investigative-ecology-critical-views-on-the-politics-of-contemporary-agriculture/",
+        "text": "ORFC Session",
+        "isExternal": true
+      }
+    ],
+    "avatar": "i-heroicons-link-solid",
+    "iframe": "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1433703880&color=%23333230&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"
+  },
+  {
+    "id": "skogssvamp",
+    "title": "Skogssvamp",
+    "year": 2024,
+    "medium": "Web application",
+    "thumbnail": "Skogssvamp.jpg",
+    "description": "This is the description",
+    "links": [
+      {
+        "url": "/writing",
+        "text": "Read more about Skogssvamp",
+        "isExternal": false
+      }
+    ],
+    "avatar": "Skogssvamp_Avatar.jpg"
+  }
+]
