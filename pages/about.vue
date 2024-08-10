@@ -53,14 +53,14 @@
             </li>
           </ul>
         </div>
-        <div
+        <!-- <div
           class="dark:text-gray-200 border dark:border-gray-800 border-gray-300 overflow-hidden rounded-sm shadow-md p-6 dark:bg-neutral-800 dark:bg-opacity-30">
           <h2 class="text-xl mb-2 flex items-center">
             <Icon name="heroicons:document-text" class="mr-2" />CV
           </h2>
           Available <NuxtLink to="/projects" class=" text-blue-600 dark:text-blue-500">here</NuxtLink>
 
-        </div>
+        </div> -->
 
       </div>
     </transition>

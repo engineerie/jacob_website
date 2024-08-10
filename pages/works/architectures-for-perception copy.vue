@@ -15,7 +15,7 @@
         <!-- UButton for toggling view -->
         <div>
           <UButton :icon="toggleIcon" @click="toggleView" variant="ghost" color="gray" />
-          <UButton icon="i-heroicons-arrow-uturn-left" to="/projects" variant="ghost" color="gray" />
+          <UButton icon="i-heroicons-arrow-uturn-left" to="/works" variant="ghost" color="gray" />
         </div>
       </div>
     </div>

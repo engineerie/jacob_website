@@ -1,9 +1,9 @@
 <template>
-    <div class="hidden">
+    <!-- <div class="hidden">
         <NuxtLink to="/writing" />
         <NuxtLink to="/writing/stadjans-edelweiss" />
         <NuxtLink to="/writing/considering-forestry" />
-    </div>
+    </div> -->
     <div class="w-full">
         <div class="flex justify-between">
             <h2 class="text-xl mb-3">News</h2>
