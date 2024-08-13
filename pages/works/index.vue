@@ -52,7 +52,7 @@
                 class="relative group overflow-hidden focus:overflow-hidden active:overflow-hidden rounded-sm shadow-md">
 
                 <nuxt-link :to="`/works/${project.id}`">
-                  <LazyNuxtImg width="390" height="234" :src="`/images/${project.thumbnail}`" :alt="project.title"
+                  <LazyNuxtImg width="312" height="187" :src="`/images/${project.thumbnail}`" :alt="project.title"
                     class="transition-transform duration-300 sm:hover:scale-105 rounded-sm" format="webp" />
                   <!-- Year display when filtered by 'year' -->
                   <span v-if="sortCriteria === 'year'"
