@@ -37,11 +37,6 @@
             active: 'hover:bg-opacity-0 sm:hover:bg-opacity-100',
           }, td: { base: 'lg:max-w-52 truncate' },
         }">
-              <template #published-data="{ row }">
-                <!-- Only render the UBadge component when completed is false -->
-                <UBadge v-if="!row.published" size="xs" label="Forthcoming" color="blue" variant="subtle" />
-                <div v-else></div>
-              </template>
               <!-- <template #avatarDisplay-data="{ row }">
       <UAvatar :src="`images/avatars/${row.avatar}`" :alt="row.title" format="webp" class=" rounded-md -mr-4" />
     </template> -->
@@ -96,9 +91,9 @@ const sortingOptions = [
 // Your projects data
 const projects = [
   // { id: 'stadjans-edelweiss', title: "Städjan's edelweiss", year: 2023, thumbnail: '', avatar: '' },
-  { id: 'insensibleRelations', title: "Insensible relations at the margins of ecosystem care", year: 2024, where: "Mustarinda magazine", published: false, thumbnail: '', avatar: '' },
-  { id: 'dataEncounters', title: "Database encounters", year: 2024, where: "Common Sensing: CRA #3 ", published: false, thumbnail: '', avatar: '' },
-  { id: 'consideringForestry', title: 'Considering forestry: A science for managing the outside', year: 2022, where: "MA Research Architeture thesis", published: true, thumbnail: '', avatar: '' },
+  { id: 'insensibleRelations', title: "Insensible relations at the margins of ecosystem care", year: 2024, where: "Mustarinda magazine", thumbnail: '', avatar: '' },
+  { id: 'dataEncounters', title: "Database encounters", year: 2024, where: "Common Sensing: CRA #3 ", thumbnail: '', avatar: '' },
+  { id: 'consideringForestry', title: 'Considering forestry: A science for managing the outside', year: 2022, where: "MA Research Architeture thesis", thumbnail: '', avatar: '' },
 ];
 
 const isTableView = ref(true);
@@ -131,7 +126,6 @@ const columns = [
   { key: 'title', label: 'Title', sortable: true },
   { key: 'where', label: 'Where', sortable: true },
   { key: 'year', label: 'Year', sortable: true },
-  { key: 'published', label: 'Status', sortable: true },
 
 
 ];

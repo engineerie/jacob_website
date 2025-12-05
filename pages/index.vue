@@ -37,25 +37,26 @@
         <transition name="glitch" mode="out-in">
           <video width="100%" height="auto" autoplay muted playsinline @ended="playNextVideo" preload="auto"
             class="video rounded-sm overflow-hidden shadow-lg" :key="currentVideo">
-            <!-- <source :src="currentVideo" type="video/mp4" /> -->
+            <source :src="currentVideo" type="video/mp4" />
             <source src="/videos/subsim_web.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
           </video>
         </transition>
         <transition name="glitch" mode="out-in">
-          <p class="text-sm mt-2 ">SUBSIM
+          <!-- <p class="text-sm mt-2 ">SUBSIM
             <UBadge size="xs" label="Work in progress" color="orange" variant="subtle" />
-          </p>
-          <!-- <p class="text-sm mt-2">{{ currentDescription }}</p> -->
+          </p> -->
+          <p class="text-sm mt-2">{{ currentDescription }}</p>
         </transition>
       </div>
-      <!-- </div> -->
     </div>
+    <!-- </div> -->
   </transition>
+
 </template>
 
 <script setup>
 import { ref, onMounted } from "vue";
+
 
 // Define the array of videos with descriptions
 const videos = [

@@ -32,7 +32,7 @@ const closeAside = () => {
 
 const links = [
   {
-    label: "Jacobb",
+    label: "Jacob Bertilsson",
     icon: "i-heroicons-home",
     // avatar: {
     //  src: '/profile.jpg',
@@ -46,11 +46,6 @@ const links = [
     to: "/works",
   },
   { label: "Writings", icon: "i-heroicons-pencil", to: "/writings" },
-  {
-    label: "News",
-    icon: "i-heroicons-newspaper",
-    to: "/news",
-  },
   // {
   //   label: 'Research',
   //   icon: 'i-heroicons-bookmark-square',

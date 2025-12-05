@@ -9,11 +9,6 @@
     <div class="flex justify-between">
       <h2 class="text-xl">Works</h2>
       <div class="flex items-end mb-2">
-        <USelectMenu v-model="completionFilter" :options="completionOptions" placeholder="Filter by Completion"
-          value-attribute="value" option-attribute="label" class="mr-2 rounded-sm" variant="none" :ui="{
-      rounded: 'rounded-full',
-      option: { rounded: 'rounded-sm' }
-    }" />
         <USelectMenu v-if="!isTableView" v-model="sortCriteria" :options="sortingOptions" placeholder="Sort by"
           value-attribute="value" option-attribute="label" class="mr-2 rounded-sm" variant="none" :ui="{
       rounded: 'rounded-full',
@@ -26,7 +21,7 @@
       <transition name="fade" mode="out-in">
         <div v-if="isTableView" key="table" class="absolute w-full pb-12">
           <div class="border dark:border-gray-800 border-gray-300 overflow-hidden rounded-sm shadow-md">
-            <UTable :rows="sortedAndFilteredProjects" :columns="columns" @select="select" :ui="{
+            <UTable :rows="sortedProjects" :columns="columns" @select="select" :ui="{
       tr: {
         active: 'hover:bg-opacity-0 sm:hover:bg-opacity-100',
       },
@@ -34,11 +29,6 @@
               <template #avatarDisplay-data="{ row }">
                 <UAvatar :src="`images/avatars/${row.avatar}`" :alt="row.title" format="webp"
                   class="rounded-md -mr-4" />
-              </template>
-              <template #completed-data="{ row }">
-                <!-- Only render the UBadge component when completed is false -->
-                <UBadge v-if="!row.completed" size="xs" label="Work in progress" color="orange" variant="subtle" />
-                <div v-else></div>
               </template>
             </UTable>
           </div>
@@ -48,7 +38,7 @@
         <div v-if="!isTableView && isGridViewVisible" key="grid" class="absolute pb-12">
           <div class="grid max-sm:grid-cols-1 grid-cols-3 gap-4">
             <transition-group name="list">
-              <div v-for="project in sortedAndFilteredProjects" :key="project.id"
+              <div v-for="project in sortedProjects" :key="project.id"
                 class="relative group overflow-hidden focus:overflow-hidden active:overflow-hidden rounded-sm shadow-md">
 
                 <nuxt-link :to="`/works/${project.id}`">
@@ -83,14 +73,6 @@ import { ref, computed, onMounted } from 'vue';
 
 // Existing reactive states and imports...
 
-const completionFilter = ref('all'); // Filter for completion status
-
-const completionOptions = [
-  { value: 'all', label: 'Show all works' },
-  { value: 'completed', label: 'Past works' },
-  { value: 'notCompleted', label: 'Work in progress' }
-];
-
 const isGridViewVisible = ref(false);
 
 onMounted(() => {
@@ -112,8 +94,7 @@ const projects = [
     year: 2024,
     medium: "Web application",
     thumbnail: "/Skogssvamp.jpg",
-    avatar: "Skogssvamp_Avatar.jpg",
-    completed: false
+    avatar: "Skogssvamp_Avatar.jpg"
   },
   {
     id: "overtired-plots",
@@ -121,8 +102,7 @@ const projects = [
     year: 2023,
     medium: "Video",
     thumbnail: "Overtired_15.png",
-    avatar: "Overtired_Avatar.jpg",
-    completed: false
+    avatar: "Overtired_Avatar.jpg"
   },
   {
     id: "forestAugmentations",
@@ -130,8 +110,7 @@ const projects = [
     year: 2022,
     medium: "Video",
     thumbnail: "AforP_10.jpg",
-    avatar: "AforP_Avatar.jpg",
-    completed: true
+    avatar: "AforP_Avatar.jpg"
   },
   {
     id: "_Subplots_01ew",
@@ -139,8 +118,7 @@ const projects = [
     year: 2021,
     medium: "Installation",
     thumbnail: "_Subplot_01_01.jpg",
-    avatar: "_Subplot_01_Avatar.jpg",
-    completed: true
+    avatar: "_Subplot_01_Avatar.jpg"
   },
   {
     id: "travel-park",
@@ -148,8 +126,7 @@ const projects = [
     year: 2021,
     medium: "Video",
     thumbnail: "Travel_park.jpg",
-    avatar: "Travel_park_Avatar.jpg",
-    completed: true
+    avatar: "Travel_park_Avatar.jpg"
   },
   {
     id: "conversing-with-the-other-than-human",
@@ -157,8 +134,7 @@ const projects = [
     year: 2020,
     medium: "Publication",
     thumbnail: "Conversing_05.jpg",
-    avatar: "Conversing_Avatar.jpg",
-    completed: true
+    avatar: "Conversing_Avatar.jpg"
   },
   {
     id: "cant-see-the-trees-for-the-forest",
@@ -166,8 +142,7 @@ const projects = [
     year: 2019,
     medium: "Exhibition",
     thumbnail: "Ground_floor_01.jpg",
-    avatar: "Ground_floor_Avatar.jpg",
-    completed: true
+    avatar: "Ground_floor_Avatar.jpg"
   },
   {
     id: "manual",
@@ -175,8 +150,7 @@ const projects = [
     year: 2019,
     medium: "Publication",
     thumbnail: "Title.png",
-    avatar: "Paper_score_Avatar.jpg",
-    completed: true
+    avatar: "Paper_score_Avatar.jpg"
   },
 
   // { id: 6, title: "Can't see the trees for the forest", year: 2021, medium: 'Exhibition', thumbnail: 'url-to-thumbnail-2' },
@@ -200,31 +174,22 @@ function shuffleArray(array) {
   return result;
 }
 
-const sortedAndFilteredProjects = computed(() => {
-  let projectsFiltered = [];
-  if (completionFilter.value === 'completed') {
-    projectsFiltered = projects.filter(project => project.completed);
-  } else if (completionFilter.value === 'notCompleted') {
-    projectsFiltered = projects.filter(project => !project.completed);
-  } else {
-    projectsFiltered = [...projects]; // Ensure all projects are shown when no filter is applied.
+const sortedProjects = computed(() => {
+  if (sortCriteria.value === 'unsorted') {
+    return shuffleArray(projects);
   }
 
-  if (sortCriteria.value === 'unsorted') {
-    return shuffleArray(projectsFiltered);
-  } else {
-    return projectsFiltered.sort((a, b) => {
-      let comparison = 0;
-      if (sortCriteria.value === "year") {
-        comparison = b.year - a.year; // Sort by year in descending order
-      } else if (sortCriteria.value === "title") {
-        comparison = a.title.localeCompare(b.title); // Alphabetical by title
-      } else if (sortCriteria.value === "medium") {
-        comparison = a.medium.localeCompare(b.medium); // Alphabetical by medium
-      }
-      return comparison;
-    });
-  }
+  return [...projects].sort((a, b) => {
+    let comparison = 0;
+    if (sortCriteria.value === "year") {
+      comparison = b.year - a.year; // Sort by year in descending order
+    } else if (sortCriteria.value === "title") {
+      comparison = a.title.localeCompare(b.title); // Alphabetical by title
+    } else if (sortCriteria.value === "medium") {
+      comparison = a.medium.localeCompare(b.medium); // Alphabetical by medium
+    }
+    return comparison;
+  });
 });
 
 function toggleView() {
@@ -236,7 +201,6 @@ const columns = [
   { key: "title", label: "Title", sortable: true },
   { key: "year", label: "Year", sortable: true },
   { key: "medium", label: "Medium", sortable: true },
-  { key: "completed", label: "Status", sortable: true },
 
   // Add more columns as needed
 ];

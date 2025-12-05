@@ -7,7 +7,7 @@ const route = useRoute();
 const breadcrumbLinks = computed(() => {
   const pathArray = route.path.split('/').filter(p => p);
   const links = [{
-    label: 'Jacobb',
+    label: 'Jacob Bertilsson',
     to: '/',
   }];
   for (let i = 0; i < pathArray.length; i++) {
