@@ -133,7 +133,7 @@ const columns = [
 const router = useRouter();
 
 function select(row) {
-  router.push(`/writings/${row.id}`);
+  router.push(`/works/${row.id}`);
 }
 </script>
 

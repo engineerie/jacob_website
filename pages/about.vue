@@ -1,12 +1,13 @@
 <template>
-  <div>
-    <div class="flex mb-2">
+  <div class="flex justify-center">
+    <!-- <div class="flex mb-2">
       <h2 class="text-xl">About</h2>
-    </div>
+    </div> -->
     <transition name="fade-grow">
-      <div v-if="isVisible">
+
+      <div v-if="isVisible" class="max-w-xl">
         <div
-          class="dark:text-gray-200 mb-4 border dark:border-gray-800 border-gray-300 overflow-hidden rounded-sm shadow-md p-6 dark:bg-neutral-800 dark:bg-opacity-30">
+          class="dark:text-gray-200 mb-4 dark:border-gray-800 border-gray-300 overflow-hidden rounded-sm p-6 dark:bg-neutral-800 dark:bg-opacity-30">
           <p>I'm an artist and researcher based between the UK and Sweden. I use video, web code and 3D visualisations
             to explore the role of technology and aesthetics within systems of ecosystem
             governance,
@@ -19,8 +20,7 @@
             practices effect the fungi composition in the soil.
             <br><br>
           </p>
-          <hr />
-          <br>
+
           <p class="text-gray-500 dark:text-gray-400">
             I've participated in exhibtions internationally at venues such as the Museum of Contemporary Art in Lyon,
             het
@@ -34,9 +34,9 @@
           </p>
         </div>
         <div
-          class="dark:text-gray-200 mb-4 border dark:border-gray-800 border-gray-300 overflow-hidden rounded-sm shadow-md p-6 dark:bg-neutral-800 dark:bg-opacity-30">
+          class="dark:text-gray-200 mb-4 dark:border-gray-800 border-gray-300 overflow-hidden rounded-sm p-6 dark:bg-neutral-800 dark:bg-opacity-30">
           <h2 class="text-xl mb-2 flex items-center">
-            <Icon name="heroicons:link" class="mr-2" />Links
+            <Icon name="heroicons:link" class="mr-2" />
           </h2>
           <ul class="list-none">
             <li>

@@ -6,61 +6,54 @@
     </div>
   </div>
   <div class="w-full">
-    <div class="flex justify-between">
+    <!-- <div class="flex justify-between">
       <h2 class="text-xl">Works</h2>
-      <div class="flex items-end mb-2">
-        <USelectMenu v-if="!isTableView" v-model="sortCriteria" :options="sortingOptions" placeholder="Sort by"
-          value-attribute="value" option-attribute="label" class="mr-2 rounded-sm" variant="none" :ui="{
-      rounded: 'rounded-full',
-      option: { rounded: 'rounded-sm' }
-    }" />
-        <UButton :icon="toggleIcon" @click="toggleView" variant="ghost" color="gray" />
-      </div>
-    </div>
+      <div class="flex items-end mb-2"></div>
+    </div> -->
     <div class="relative">
       <transition name="fade" mode="out-in">
-        <div v-if="isTableView" key="table" class="absolute w-full pb-12">
-          <div class="border dark:border-gray-800 border-gray-300 overflow-hidden rounded-sm shadow-md">
-            <UTable :rows="sortedProjects" :columns="columns" @select="select" :ui="{
-      tr: {
-        active: 'hover:bg-opacity-0 sm:hover:bg-opacity-100',
-      },
-    }">
+        <div v-if="isVisible" key="table" class="absolute w-full pb-12">
+          <div class=" dark:border-gray-800 border-gray-300 overflow-hidden rounded-sm ">
+            <div v-if="isMobile" class="divide-y divide-gray-200 dark:divide-gray-800">
+              <button v-for="project in sortedProjects" :key="project.id" type="button"
+                class="flex w-full items-start gap-4 p-4 text-left hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors"
+                @click="select(project)">
+                <div class="h-16 w-20 shrink-0 overflow-hidden rounded">
+                  <NuxtImg v-if="project.avatar" :src="`images/avatars/${project.avatar}`" :alt="project.title"
+                    class="h-full w-full object-cover" width="80" height="64" />
+                  <NuxtImg v-else :src="`/images/${project.thumbnail}`" :alt="project.title"
+                    class="h-full w-full object-cover" width="80" height="64" />
+                </div>
+                <div class="flex-1 min-w-0 space-y-1">
+                  <div class="flex items-start justify-between gap-2">
+                    <h3 class="text-base font-semibold text-gray-900 dark:text-gray-100 break-words">
+                      {{ project.title }}
+                    </h3>
+                    <span class="text-sm text-gray-600 dark:text-gray-300 shrink-0">{{ project.year }}</span>
+                  </div>
+                  <p class="text-sm text-gray-600 dark:text-gray-300">{{ project.medium }}</p>
+                </div>
+              </button>
+            </div>
+            <UTable v-else :rows="sortedProjects" :columns="columns" @select="select" :ui="{
+              tr: {
+                active: 'hover:bg-opacity-0 sm:hover:bg-opacity-100',
+              },
+            }">
               <template #avatarDisplay-data="{ row }">
-                <UAvatar :src="`images/avatars/${row.avatar}`" :alt="row.title" format="webp"
-                  class="rounded-md -mr-4" />
+                <div v-if="row.avatar" class="h-12 w-16 -m-3 rounded">
+                  <NuxtImg :src="`images/avatars/${row.avatar}`" :alt="row.title" class="h-12 w-16 rounded" width="75"
+                    height="50" />
+                </div>
+
+                <div v-else
+                  class="h-12 w-16 -m-3 rounded flex items-center justify-center text-xs text-gray-600 dark:text-gray-200 bg-gray-100 dark:bg-gray-800">
+                  <UIcon name="i-heroicons-pencil" class="h-5 w-5" />
+                </div>
+                <!-- <UAvatar :src="`images/avatars/${row.avatar}`" :alt="row.title" format="webp"
+                  class="rounded-md -mr-4" /> -->
               </template>
             </UTable>
-          </div>
-        </div>
-      </transition>
-      <transition name="fade" mode="out-in">
-        <div v-if="!isTableView && isGridViewVisible" key="grid" class="absolute pb-12">
-          <div class="grid max-sm:grid-cols-1 grid-cols-3 gap-4">
-            <transition-group name="list">
-              <div v-for="project in sortedProjects" :key="project.id"
-                class="relative group overflow-hidden focus:overflow-hidden active:overflow-hidden rounded-sm shadow-md">
-
-                <nuxt-link :to="`/works/${project.id}`">
-                  <LazyNuxtImg width="312" height="187" :src="`/images/${project.thumbnail}`" :alt="project.title"
-                    class="transition-transform duration-300 sm:hover:scale-105 rounded-sm" format="webp" />
-                  <!-- Year display when filtered by 'year' -->
-                  <span v-if="sortCriteria === 'year'"
-                    class="absolute top-1 right-1 bg-gray-900 bg-opacity-0 text-white px-1.5 py-1 rounded-lg text-xs ">
-                    {{ project.year }}
-                  </span>
-                  <span v-if="sortCriteria === 'medium'"
-                    class="absolute top-1 right-1 bg-gray-900 bg-opacity-0 text-white px-1.5 py-1 rounded-lg text-xs ">
-                    {{ project.medium }}
-                  </span>
-                  <span v-if="sortCriteria === 'title'"
-                    class="absolute top-1 right-1 bg-gray-900 bg-opacity-0 text-white px-1.5 py-1 rounded-lg text-xs ">
-                    {{ project.title }}
-                  </span>
-                  <LazyThumbnailTitle :title="project.title" />
-                </nuxt-link>
-              </div>
-            </transition-group>
           </div>
         </div>
       </transition>
@@ -70,21 +63,16 @@
 
 <script setup>
 import { ref, computed, onMounted } from 'vue';
+import { useRouter } from 'vue-router';
+import { useMediaQuery } from '@vueuse/core';
 
-// Existing reactive states and imports...
-
-const isGridViewVisible = ref(false);
+const isVisible = ref(false);
 
 onMounted(() => {
-  isGridViewVisible.value = true;
+  isVisible.value = true;
 });
 
-const sortingOptions = [
-  { value: "unsorted", label: "Unsorted" },
-  { value: "year", label: "Year" },
-  { value: "title", label: "Title" },
-  { value: "medium", label: "Medium" },
-];
+const isMobile = useMediaQuery('(max-width: 767px)');
 
 // Your projects data
 const projects = [
@@ -152,49 +140,48 @@ const projects = [
     thumbnail: "Title.png",
     avatar: "Paper_score_Avatar.jpg"
   },
+  {
+    id: "insensibleRelations",
+    title: "Insensible relations at the margins of ecosystem care",
+    year: 2024,
+    medium: "Writing",
+    thumbnail: "Title.png",
+    avatar: "",
+    route: "/works/insensibleRelations"
+  },
+  {
+    id: "dataEncounters",
+    title: "Database encounters",
+    year: 2024,
+    medium: "Writing",
+    thumbnail: "Title.png",
+    avatar: "",
+    route: "/works/dataEncounters"
+  },
+  {
+    id: "consideringForestry",
+    title: "Considering forestry: A science for managing the outside",
+    year: 2022,
+    medium: "Writing",
+    thumbnail: "considering-forestry_02.jpg",
+    avatar: "",
+    route: "/works/consideringForestry"
+  },
 
   // { id: 6, title: "Can't see the trees for the forest", year: 2021, medium: 'Exhibition', thumbnail: 'url-to-thumbnail-2' },
 ];
 
-const isTableView = ref(false);
-const sortCriteria = ref("unsorted");
-
-const toggleIcon = computed(() => {
-  return isTableView.value
-    ? "i-heroicons-squares-2x2"
-    : "i-heroicons-table-cells";
-});
-
-function shuffleArray(array) {
-  let result = [...array]; // Make a copy to avoid in-place modification
-  for (let i = result.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [result[i], result[j]] = [result[j], result[i]]; // Swap elements
-  }
-  return result;
-}
-
 const sortedProjects = computed(() => {
-  if (sortCriteria.value === 'unsorted') {
-    return shuffleArray(projects);
-  }
-
+  // Default to year descending, fall back to title for stable ordering within the same year
   return [...projects].sort((a, b) => {
-    let comparison = 0;
-    if (sortCriteria.value === "year") {
-      comparison = b.year - a.year; // Sort by year in descending order
-    } else if (sortCriteria.value === "title") {
-      comparison = a.title.localeCompare(b.title); // Alphabetical by title
-    } else if (sortCriteria.value === "medium") {
-      comparison = a.medium.localeCompare(b.medium); // Alphabetical by medium
-    }
-    return comparison;
+    const yearDiff = b.year - a.year;
+    return yearDiff !== 0 ? yearDiff : a.title.localeCompare(b.title);
   });
 });
 
-function toggleView() {
-  isTableView.value = !isTableView.value;
-}
+const getProjectRoute = (project) => {
+  return project.route || `/works/${project.id}`;
+};
 
 const columns = [
   { key: "avatarDisplay", label: "", sortable: false },
@@ -208,7 +195,7 @@ const columns = [
 const router = useRouter();
 
 function select(row) {
-  router.push(`/works/${row.id}`);
+  router.push(getProjectRoute(row));
 }
 </script>
 

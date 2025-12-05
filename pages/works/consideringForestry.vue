@@ -5,7 +5,7 @@
     <div class="pb-10">
         <div class="flex justify-between mb-2">
             <h2 class="text-xl">Considering forestry: A science for managing the outside</h2>
-            <UButton icon="i-heroicons-arrow-uturn-left" to="/writings" variant="ghost" color="gray" />
+            <UButton icon="i-heroicons-arrow-uturn-left" to="/works" variant="ghost" color="gray" />
         </div>
         <transition name="fade-grow">
             <div v-if="isImageVisible" class="grid grid-cols-1 lg:grid-cols-12 gap-4">

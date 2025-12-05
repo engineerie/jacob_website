@@ -45,7 +45,6 @@ const links = [
     icon: "i-heroicons-square-3-stack-3d",
     to: "/works",
   },
-  { label: "Writings", icon: "i-heroicons-pencil", to: "/writings" },
   // {
   //   label: 'Research',
   //   icon: 'i-heroicons-bookmark-square',
