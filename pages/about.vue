@@ -8,18 +8,19 @@
       <div v-if="isVisible" class="max-w-xl">
         <div
           class="dark:text-gray-200 mb-4 dark:border-gray-800 border-gray-300 overflow-hidden rounded-sm p-6 dark:bg-neutral-800 dark:bg-opacity-30">
-          <p>I'm an artist and researcher based between the UK and Sweden. I use video, web code and 3D visualisations
-            to explore the role of technology and aesthetics within systems of ecosystem
-            governance,
-            primarily focusing on digital representations of forest environments.
+          <p>
+            I am a designer, artist and researcher working between the UK and Sweden. My practice combines video,
+            web-based interfaces and 3D visualisations to explore how design, technology and aesthetics shape systems of
+            ecosystem governance, with a particular focus on digital representations of forest environments.
             <br><br>
-            I currently run the project “see the mushrooms in your forest”
-            together with Anders Dahlberg, professor in mycology at the university of agricultural sciences in Uppsala
-            Sweden. Through a web application, the project will
-            communicate new data on what mushrooms exist in different forest environments and how different forestry
-            practices effect the fungi composition in the soil.
+            I am the design lead for the project “see the mushrooms in your forest,” together with Anders Dahlberg,
+            professor of mycology at the Swedish University of Agricultural Sciences in Uppsala. Through an interactive
+            web application, the project translates new ecological data into a visual and accessible format, showing
+            what mushrooms exist in different forest environments and how forestry practices influence fungal
+            communities in the soil.
             <br><br>
           </p>
+
 
           <p class="text-gray-500 dark:text-gray-400">
             I've participated in exhibtions internationally at venues such as the Museum of Contemporary Art in Lyon,

@@ -23,7 +23,7 @@
     </transition>
 
     <main :class="{ 'lg:ml-48': isAsideOpen }"
-      class="flex-1 flex justify-center mt-32 max-sm:mt-12 transition-all ease-in-out duration-300">
+      class="flex-1 flex justify-center mt-24 max-sm:mt-12 transition-all ease-in-out duration-300">
       <div class="w-full max-w-full sm:max-w-lg md:max-w-xl lg:max-w-2xl xl:max-w-3xl 2xl:max-w-4xl p-4">
         <transition name="fade" mode="out-in">
           <NuxtPage />
